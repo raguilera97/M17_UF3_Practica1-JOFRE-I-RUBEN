@@ -1,14 +1,11 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class VillagerController : MonoBehaviour
+public class SoldierControler : MonoBehaviour
 {
-
-    public GameObject pickaxe;
-    public GameObject hammer;
+   
     public Vector3 lookAtTargetPosition;
 
     NavMeshAgent agent;
@@ -47,7 +44,8 @@ public class VillagerController : MonoBehaviour
         float smoth = Mathf.Min(1.0f, Time.deltaTime / 0.15f);
         smothDeltaPosition = Vector2.Lerp(smothDeltaPosition, deltaPosition, smoth);
 
-        if (Time.deltaTime > 1e-5f){
+        if (Time.deltaTime > 1e-5f)
+        {
             velocity = smothDeltaPosition / Time.deltaTime;
         }
 
@@ -60,7 +58,7 @@ public class VillagerController : MonoBehaviour
         this.transform.LookAt(agent.steeringTarget + transform.forward);
 
     }
-    
+
     void OnAnimatorMove()
     {
         transform.position = agent.nextPosition;
@@ -71,31 +69,10 @@ public class VillagerController : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if(Physics.Raycast(ray.origin, ray.direction, out hitInfo))
+            if (Physics.Raycast(ray.origin, ray.direction, out hitInfo))
             {
                 agent.destination = hitInfo.point;
             }
         }
     }
-
-
-    public void TakePickaxe()
-    {
-        pickaxe.SetActive(true);
-        hammer.SetActive(false);
-    }
-
-    public void TakeHammer()
-    {
-        pickaxe.SetActive(false);
-        hammer.SetActive(true);
-    }
-
-    public void TakeNothing()
-    {
-        pickaxe.SetActive(false);
-        hammer.SetActive(false);
-    }
-
-
 }
