@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class VillagerController : MonoBehaviour
+public class VillagerController : MonoBehaviour, ISaveable
 {
 
     public GameObject pickaxe;
@@ -97,5 +97,32 @@ public class VillagerController : MonoBehaviour
         hammer.SetActive(false);
     }
 
+    [Serializable]
+    private class CivilData
+    {
+        public float[] position = new float[3];
 
+    }
+
+    public object CaptureState()
+    {
+        CivilData civil = new CivilData();
+
+        civil.position[0] = transform.position.x;
+        civil.position[1] = transform.position.y;
+        civil.position[2] = transform.position.z;
+
+        return civil;
+    }
+
+    public void RestoreState(object data)
+    {
+        var civilData = (CivilData)data;
+        
+        Vector3 position;
+        position.x = civilData.position[0];
+        position.y = civilData.position[1];
+        position.z = civilData.position[2];
+        transform.position = position;
+    }
 }
