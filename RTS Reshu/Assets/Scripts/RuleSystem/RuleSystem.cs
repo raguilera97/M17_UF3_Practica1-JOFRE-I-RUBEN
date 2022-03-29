@@ -29,9 +29,9 @@ public class RuleSystem : MonoBehaviour
 
     private void Start()
     {
-        exempleUnit = GetComponent<ExempleUnit>();
+        /*exempleUnit = GetComponent<ExempleUnit>();
         float healthNow = exempleUnit.healtBase;
-        Debug.Log(healthNow);
+        Debug.Log(healthNow);*/
     }
 
     private void Update()
