@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 //using CodeMonkey.Utils;
 
-public class GridBuildingSystem3D : MonoBehaviour {
+public class GridBuildin : MonoBehaviour {
 
    /* public static GridBuildingSystem3D Instance { get; private set; }
 
