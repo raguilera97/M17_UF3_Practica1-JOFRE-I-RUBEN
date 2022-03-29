@@ -25,15 +25,26 @@ public class ObjectClick : MonoBehaviour
 
             if(Physics.Raycast(ray, out hit, Mathf.Infinity, clickable))
             {
-                
-                if (Input.GetKey(KeyCode.LeftShift))
+                if (hit.collider.gameObject.tag.Equals("Building"))
                 {
-                    Selections.Instance.ShiftClickSelect(hit.collider.gameObject.GetComponent<Unit>());
+                    Selections.Instance.BuildingClick(hit.collider.gameObject.GetComponent<Building>);
+                }
+                else if (hit.collider.gameObject.tag.Equals("Resource"))
+                {
+
                 }
                 else
                 {
-                    Selections.Instance.SelectClick(hit.collider.gameObject.GetComponent<Unit>());
+                    if (Input.GetKey(KeyCode.LeftShift))
+                    {
+                        Selections.Instance.ShiftClickSelect(hit.collider.gameObject.GetComponent<Unit>());
+                    }
+                    else
+                    {
+                        Selections.Instance.SelectClick(hit.collider.gameObject.GetComponent<Unit>());
+                    }
                 }
+                
             }
 
             else

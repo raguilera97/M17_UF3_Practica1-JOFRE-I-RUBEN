@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class Selections : MonoBehaviour
     public List<Unit> unitList = new List<Unit>();
     public List<Unit> unitSelected = new List<Unit>();
     public List<Building> buildingSelected = new List<Building>();
+    public List<Resource> resourceSelected = new List<Resource>();
     
 
     private static Selections _instance;
@@ -30,6 +32,8 @@ public class Selections : MonoBehaviour
         unitSelected.Add(unitAdd);
         unitAdd.Selected();
     }
+
+    
 
     public void ShiftClickSelect(Unit unitAdd)
     {
@@ -68,6 +72,11 @@ public class Selections : MonoBehaviour
     public void Deselect(Unit unitDeselect)
     {
 
+    }
+
+    public void BuildingClick(Building building)
+    {
+        
     }
 
 }
