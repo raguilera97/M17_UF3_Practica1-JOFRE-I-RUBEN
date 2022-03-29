@@ -117,6 +117,8 @@ public class VillagerController : MonoBehaviour, ISaveable
 
     public void RestoreState(object data)
     {
+        gameObject.GetComponent<NavMeshAgent>().enabled = false;
+
         var civilData = (CivilData)data;
         
         Vector3 position;
@@ -124,5 +126,7 @@ public class VillagerController : MonoBehaviour, ISaveable
         position.y = civilData.position[1];
         position.z = civilData.position[2];
         transform.position = position;
+
+        gameObject.GetComponent<NavMeshAgent>().enabled = true;
     }
 }
