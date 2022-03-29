@@ -1,14 +1,11 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class VillagerController : MonoBehaviour, ISaveable
+public class SoldierControler : MonoBehaviour
 {
-
-    public GameObject pickaxe;
-    public GameObject hammer;
+   
     public Vector3 lookAtTargetPosition;
 
     NavMeshAgent agent;
@@ -47,7 +44,8 @@ public class VillagerController : MonoBehaviour, ISaveable
         float smoth = Mathf.Min(1.0f, Time.deltaTime / 0.15f);
         smothDeltaPosition = Vector2.Lerp(smothDeltaPosition, deltaPosition, smoth);
 
-        if (Time.deltaTime > 1e-5f){
+        if (Time.deltaTime > 1e-5f)
+        {
             velocity = smothDeltaPosition / Time.deltaTime;
         }
 
@@ -60,7 +58,7 @@ public class VillagerController : MonoBehaviour, ISaveable
         this.transform.LookAt(agent.steeringTarget + transform.forward);
 
     }
-    
+
     void OnAnimatorMove()
     {
         transform.position = agent.nextPosition;
@@ -71,58 +69,10 @@ public class VillagerController : MonoBehaviour, ISaveable
         if (Input.GetMouseButtonDown(1))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if(Physics.Raycast(ray.origin, ray.direction, out hitInfo))
+            if (Physics.Raycast(ray.origin, ray.direction, out hitInfo))
             {
                 agent.destination = hitInfo.point;
             }
         }
-    }
-
-
-    public void TakePickaxe()
-    {
-        pickaxe.SetActive(true);
-        hammer.SetActive(false);
-    }
-
-    public void TakeHammer()
-    {
-        pickaxe.SetActive(false);
-        hammer.SetActive(true);
-    }
-
-    public void TakeNothing()
-    {
-        pickaxe.SetActive(false);
-        hammer.SetActive(false);
-    }
-
-    [Serializable]
-    private class CivilData
-    {
-        public float[] position = new float[3];
-
-    }
-
-    public object CaptureState()
-    {
-        CivilData civil = new CivilData();
-
-        civil.position[0] = transform.position.x;
-        civil.position[1] = transform.position.y;
-        civil.position[2] = transform.position.z;
-
-        return civil;
-    }
-
-    public void RestoreState(object data)
-    {
-        var civilData = (CivilData)data;
-        
-        Vector3 position;
-        position.x = civilData.position[0];
-        position.y = civilData.position[1];
-        position.z = civilData.position[2];
-        transform.position = position;
     }
 }
