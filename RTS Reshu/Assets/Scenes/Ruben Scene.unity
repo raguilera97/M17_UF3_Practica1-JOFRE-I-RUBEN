@@ -3676,10 +3676,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 5124635284489004024, guid: c3a3ff7a78606e949ace95a07f8737a9, type: 3}
-      propertyPath: m_StoppingDistance
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6217965686480183280, guid: c3a3ff7a78606e949ace95a07f8737a9, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -3795,10 +3791,6 @@ PrefabInstance:
     - target: {fileID: 6217965687234326985, guid: c3a3ff7a78606e949ace95a07f8737a9, type: 3}
       propertyPath: m_Name
       value: Villager
-      objectReference: {fileID: 0}
-    - target: {fileID: 6217965687234326985, guid: c3a3ff7a78606e949ace95a07f8737a9, type: 3}
-      propertyPath: m_Layer
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6217965687234326990, guid: c3a3ff7a78606e949ace95a07f8737a9, type: 3}
       propertyPath: m_RootOrder

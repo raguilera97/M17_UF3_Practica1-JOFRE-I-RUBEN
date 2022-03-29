@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitClick : MonoBehaviour
+public class ObjectClick : MonoBehaviour
 {
     private Camera mainCamera;
 
@@ -28,11 +28,11 @@ public class UnitClick : MonoBehaviour
                 
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
-                    UnitSelection.Instance.ShiftClickSelect(hit.collider.gameObject.GetComponent<Unit>());
+                    Selections.Instance.ShiftClickSelect(hit.collider.gameObject.GetComponent<Unit>());
                 }
                 else
                 {
-                    UnitSelection.Instance.SelectClick(hit.collider.gameObject.GetComponent<Unit>());
+                    Selections.Instance.SelectClick(hit.collider.gameObject.GetComponent<Unit>());
                 }
             }
 
@@ -40,7 +40,7 @@ public class UnitClick : MonoBehaviour
             {
                 if (!Input.GetKey(KeyCode.LeftShift))
                 {
-                    UnitSelection.Instance.DeselectAll();
+                    Selections.Instance.DeselectAll();
                 }
                 
             }

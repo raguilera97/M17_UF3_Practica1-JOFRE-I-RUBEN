@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class SelectableCharacter : MonoBehaviour {
+public class SelectableObject : MonoBehaviour {
 
     public SpriteRenderer selectImage;
 

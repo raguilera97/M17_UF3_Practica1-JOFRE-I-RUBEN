@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitSelection : MonoBehaviour
+public class Selections : MonoBehaviour
 {
     public List<Unit> unitList = new List<Unit>();
     public List<Unit> unitSelected = new List<Unit>();
+    public List<Building> buildingSelected = new List<Building>();
+    
 
-    private static UnitSelection _instance;
-    public static UnitSelection Instance { get { return _instance; } }
+    private static Selections _instance;
+    public static Selections Instance { get { return _instance; } }
 
     private void Awake()
     {
@@ -60,7 +62,7 @@ public class UnitSelection : MonoBehaviour
             unit.Unselected();
         }
         unitSelected.Clear();
-        
+        buildingSelected.Clear();
     }
 
     public void Deselect(Unit unitDeselect)

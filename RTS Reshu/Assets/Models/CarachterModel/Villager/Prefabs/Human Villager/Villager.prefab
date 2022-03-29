@@ -968,7 +968,7 @@ GameObject:
   - component: {fileID: 7409953875387008161}
   - component: {fileID: 1509552968178386695}
   - component: {fileID: 7781771313924120365}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Villager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1041,7 +1041,7 @@ NavMeshAgent:
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 3
-  m_StoppingDistance: 0.2
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
