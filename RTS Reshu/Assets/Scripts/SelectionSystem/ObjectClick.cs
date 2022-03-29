@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ObjectClick : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class ObjectClick : MonoBehaviour
 
     public LayerMask clickable;
     public LayerMask ground;
+    public LayerMask UI;
+    
+    
    
     void Start()
     {
@@ -47,15 +51,14 @@ public class ObjectClick : MonoBehaviour
                 
             }
 
-            else
+            else if (!EventSystem.current.IsPointerOverGameObject())
             {
                 if (!Input.GetKey(KeyCode.LeftShift))
                 {
                     Selections.Instance.DeselectAll();
                 }
-                
             }
-
+            
         }
     }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Selectable_Char
   - Resource
+  - Building
   layers:
   - Default
   - TransparentFX

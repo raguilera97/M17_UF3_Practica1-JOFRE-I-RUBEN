@@ -7,7 +7,7 @@ public class Selections : MonoBehaviour
 {
     public List<Unit> unitList = new List<Unit>();
     public List<Unit> unitSelected = new List<Unit>();
-    public List<Building> buildingSelected = new List<Building>();
+    public Building building;
     public Resource resource;
     
 
@@ -66,14 +66,19 @@ public class Selections : MonoBehaviour
             unit.Unselected();
         }
         unitSelected.Clear();
-        buildingSelected.Clear();
+        
 
         if(resource != null)
         {
             resource.Unselected();
             resource = null;
         }
-        
+        if (building != null)
+        {
+            building.Unselected();
+            building = null;
+        }
+
 
     }
 
@@ -82,9 +87,10 @@ public class Selections : MonoBehaviour
 
     }
 
-    public void BuildingClick(Building building)
+    public void BuildingClick(Building buildingSelect)
     {
-        
+        building = buildingSelect;
+        building.Selected();
     }
 
     public void ResourceClick(Resource resourceSelect)
