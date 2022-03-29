@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Resource : MonoBehaviour
 {
-    
+
+    [SerializeField] SelectableObject ringSelector;
+
+    bool itsSelected = false;
+
     void Start()
     {
         
@@ -14,5 +18,19 @@ public class Resource : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Selected()
+    {
+        ringSelector.TurnOnSelector();
+        itsSelected = true;
+
+    }
+
+    public void Unselected()
+    {
+        ringSelector.TurnOffSelector();
+        itsSelected = false;
+
     }
 }

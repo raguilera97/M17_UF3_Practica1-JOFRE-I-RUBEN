@@ -27,11 +27,11 @@ public class ObjectClick : MonoBehaviour
             {
                 if (hit.collider.gameObject.tag.Equals("Building"))
                 {
-                    Selections.Instance.BuildingClick(hit.collider.gameObject.GetComponent<Building>);
+                    Selections.Instance.BuildingClick(hit.collider.gameObject.GetComponent<Building>());
                 }
                 else if (hit.collider.gameObject.tag.Equals("Resource"))
                 {
-
+                    Selections.Instance.ResourceClick(hit.collider.gameObject.GetComponent<Resource>());
                 }
                 else
                 {
