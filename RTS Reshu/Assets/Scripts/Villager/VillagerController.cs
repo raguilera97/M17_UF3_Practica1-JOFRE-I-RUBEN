@@ -32,7 +32,11 @@ public class VillagerController : MonoBehaviour, ISaveable
     // Update is called once per frame
     void Update()
     {
-        ClickToMove();
+        if (GetComponent<Unit>().ItsSelected())
+        {
+            ClickToMove();
+        }
+
         AnimationController();
     }
 

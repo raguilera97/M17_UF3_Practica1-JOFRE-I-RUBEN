@@ -29,7 +29,10 @@ public class SoldierControler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ClickToMove();
+        if (GetComponent<Unit>().ItsSelected())
+        {
+            ClickToMove();
+        }
         AnimationController();
     }
 
