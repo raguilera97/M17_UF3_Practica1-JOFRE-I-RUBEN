@@ -8,8 +8,9 @@ public class Building : MonoBehaviour
     [SerializeField] GameObject HUDPanel;
     [SerializeField] Transform spawnVillager;
     [SerializeField] GameObject villager;
+    [SerializeField] GameObject buildButton;
     Almacen almacen;
-    int resources;
+    
     
     bool itsSelected = false;
 
@@ -29,6 +30,8 @@ public class Building : MonoBehaviour
         ringSelector.TurnOnSelector();
         itsSelected = true;
         HUDPanel.SetActive(true);
+
+        
 
     }
 
