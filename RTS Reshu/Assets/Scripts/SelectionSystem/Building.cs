@@ -8,11 +8,14 @@ public class Building : MonoBehaviour
     [SerializeField] GameObject HUDPanel;
     [SerializeField] Transform spawnVillager;
     [SerializeField] GameObject villager;
+    Almacen almacen;
+    int resources;
+    
     bool itsSelected = false;
 
     void Start()
     {
-        
+        //resources = almacen.food;
     }
 
 
@@ -40,10 +43,13 @@ public class Building : MonoBehaviour
     public void SpawnVillager()
     {
         Instantiate(villager, spawnVillager.position, Quaternion.identity);
-    }
 
-    private void SpawnWarrior()
-    {
-
+        /*if (resources >= 20) { 
+        Instantiate(villager, spawnVillager.position, Quaternion.identity);
+        }
+        else
+        {
+            Debug.Log("No podes.");
+        }*/
     }
 }
