@@ -488,7 +488,14 @@ ModelImporter:
       - time: 0.57377046
         functionName: Recollect
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: d32d21f197137ae4a99f5c3c2fd5c18f, type: 3}
+        objectReferenceParameter: {fileID: 11500000, guid: ef2795fe0894c644881ac572f27c6ffd, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0
+        functionName: TakePickaxe
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: ef2795fe0894c644881ac572f27c6ffd, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

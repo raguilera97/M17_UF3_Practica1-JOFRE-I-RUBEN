@@ -12,17 +12,15 @@ public class VillagerController : MonoBehaviour, ISaveable
     public Vector3 lookAtTargetPosition;
     public Almacen almacen;
 
-    Resource resourceSelect;
     NavMeshAgent agent;
     Animator anim;
     RaycastHit hitInfo = new RaycastHit();
     Vector2 smothDeltaPosition = Vector2.zero;
     Vector2 velocity = Vector2.zero;
+    iaVillager iaRecolect;
 
     public int backpackSpace = 20;
     public int[] backpack = new int[] {0,0};
-    private bool mining = false;
-    private bool goAlmacen = false;
     private bool walking;
 
     // Start is called before the first frame update
@@ -30,9 +28,8 @@ public class VillagerController : MonoBehaviour, ISaveable
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        iaRecolect = GetComponent<iaVillager>();
         agent.updatePosition = false;
-
-        
         almacen = FindObjectOfType<Almacen>();
     }
 
@@ -45,41 +42,10 @@ public class VillagerController : MonoBehaviour, ISaveable
         {
             ClickToMove();
         }
-        DistanceMiningCheckout();
-        DistanceAlmacenCheckout();
         AnimationController();
     }
 
-    private void DistanceAlmacenCheckout()
-    {
-        if(goAlmacen == true && agent.remainingDistance < 1 && agent.remainingDistance != 0)
-        {
-            almacen.FillAlmacen(backpack);
-            backpack[0] = 0;
-            backpack[1] = 0;
-            if (resourceSelect != null)
-            {
-                if (resourceSelect.id.Equals("Rock"))
-                {
-                    Mining(resourceSelect);
-                }
-                else
-                {
-                    Debug.Log("Buscar Mansanas");
-                }
-                
-            }
-        }
-    }
-
-    private void DistanceMiningCheckout()
-    {
-        if (mining == true && agent.remainingDistance < 1 && agent.remainingDistance != 0)
-        {
-            goAlmacen = false;
-            SetMiningAnimation(true);
-        }
-    }
+    
 
     private void AnimationController()
     {
@@ -105,7 +71,9 @@ public class VillagerController : MonoBehaviour, ISaveable
         this.transform.LookAt(agent.steeringTarget + transform.forward);
 
     }
+
     
+
     void OnAnimatorMove()
     {
         transform.position = agent.nextPosition;
@@ -116,8 +84,10 @@ public class VillagerController : MonoBehaviour, ISaveable
         
         if (Input.GetMouseButtonDown(1))
         {
-            goAlmacen = false;
-            mining = false;
+            iaRecolect.setMining(false);
+            iaRecolect.setGathering(false);
+            iaRecolect.setgoAlmacen(false);
+            SetGatheringAnimation(false);
             SetMiningAnimation(false);
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(ray.origin, ray.direction, out hitInfo))
@@ -127,54 +97,14 @@ public class VillagerController : MonoBehaviour, ISaveable
         }
     }
 
-    public void Mining(Resource resource)
+    public void SetGatheringAnimation(bool SP)
     {
-        
-        agent.destination = resource.transform.position;
-        resourceSelect = resource;
-        mining = true;
-    }
-
-   
-    public void Recollect()
-    {
-        
-        if(resourceSelect.resource > 0)
-        {
-            resourceSelect.resource -= 10;
-            if(backpack[0] + backpack [1] + 10 <= backpackSpace)
-            {
-                backpack[0] += 10;
-            }
-            else
-            {
-                Almacenar();
-            }
-            
-        }
-        else
-        {
-            Almacenar();
-        }
-    }
-
-    private void Almacenar()
-    {
-        goAlmacen = true;
-        SetMiningAnimation(false);
-        mining = false;
-        agent.SetDestination(almacen.transform.position);
+        anim.SetBool("itsGathering", SP);
     }
 
     public void SetMiningAnimation(bool SP)
     {
         anim.SetBool("itsMining", SP);
-    }
-
-    public bool IsIdle()
-    {
-        bool si = false;
-        return si;
     }
 
     public void TakePickaxe()
