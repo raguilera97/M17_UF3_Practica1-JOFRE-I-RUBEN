@@ -968,6 +968,7 @@ GameObject:
   - component: {fileID: 7409953875387008161}
   - component: {fileID: 1509552968178386695}
   - component: {fileID: 7781771313924120365}
+  - component: {fileID: 8107674609659117520}
   m_Layer: 8
   m_Name: Villager
   m_TagString: Untagged
@@ -1041,7 +1042,7 @@ NavMeshAgent:
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 3
-  m_StoppingDistance: 1
+  m_StoppingDistance: 10
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1089,6 +1090,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &8107674609659117520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6217965687234326985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f502019c095bba244a33eb14620450c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rockNodeTransform: {fileID: 0}
+  storage: {fileID: 0}
 --- !u!1 &6217965687269494114
 GameObject:
   m_ObjectHideFlags: 0

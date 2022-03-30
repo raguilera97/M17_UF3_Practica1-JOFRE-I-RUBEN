@@ -67,12 +67,6 @@ public class Selections : MonoBehaviour
         }
         unitSelected.Clear();
         buildingSelected.Clear();
-
-        if(resource != null)
-        {
-            resource.Unselected();
-            resource = null;
-        }
         
 
     }
@@ -89,8 +83,25 @@ public class Selections : MonoBehaviour
 
     public void ResourceClick(Resource resourceSelect)
     {
-        resource = resourceSelect;
-        resource.Selected();
+        foreach (Unit unit in unitSelected)
+        {
+            if(unit.name.Contains("Villager"))
+            {
+                resource = resourceSelect;
+                resource.Selected();
+                unit.GetComponent<VillagerController>().Mining(resource);
+                StartCoroutine(waitDesactive());
+                break;
+            }
+            
+        }
+        
+    }
+
+    IEnumerator waitDesactive()
+    {
+        yield return new  WaitForSeconds(0.2f);
+        resource.Unselected();
     }
 
 }

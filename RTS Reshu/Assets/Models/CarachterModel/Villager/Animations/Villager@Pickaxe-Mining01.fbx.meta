@@ -485,8 +485,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0
-        functionName: TakePickaxe
+      - time: 0.57377046
+        functionName: Recollect
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d32d21f197137ae4a99f5c3c2fd5c18f, type: 3}
         floatParameter: 0

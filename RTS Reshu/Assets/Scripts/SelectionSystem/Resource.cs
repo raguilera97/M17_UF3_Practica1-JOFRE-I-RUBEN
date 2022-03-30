@@ -6,22 +6,15 @@ public class Resource : MonoBehaviour
 {
 
     [SerializeField] SelectableObject ringSelector;
+    
+    public string id;
+    public int resource = 200;
 
     bool itsSelected = false;
 
-    void Start()
-    {
-        
-    }
-
-   
-    void Update()
-    {
-        
-    }
-
     public void Selected()
     {
+
         ringSelector.TurnOnSelector();
         itsSelected = true;
 
