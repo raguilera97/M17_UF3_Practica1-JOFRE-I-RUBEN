@@ -16,7 +16,10 @@ public class Building : MonoBehaviour
 
     void Start()
     {
-        //resources = almacen.food;
+        /*
+        almacen = FindObjectOfType<Almacen>();
+         food = almacen.food;
+         */
     }
 
 
