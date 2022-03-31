@@ -87,7 +87,8 @@ public class RuleSystem : MonoBehaviour
     {
         bool huntedMeat = false;
 
-        if (exempleUnit.food < exempleUnit.maxFood && exempleUnit.currentCivils < exempleUnit.maxCivils && exempleUnit.currentCivils != 0)
+        if (exempleUnit.food < exempleUnit.maxFood && exempleUnit.currentCivils <= exempleUnit.maxCivils && exempleUnit.currentCivils != 0 
+            && exempleUnit.currentSoldiers <= exempleUnit.maxSoldiers)
         {
             huntedMeat = true;
         }
@@ -100,7 +101,7 @@ public class RuleSystem : MonoBehaviour
     {
         bool needVillagers = false;
 
-        if (exempleUnit.food > 50 && exempleUnit.currentCivils < exempleUnit.maxCivils)
+        if (exempleUnit.food > 25 && exempleUnit.currentCivils < exempleUnit.maxCivils)
         {
             needVillagers = true;
         }
@@ -147,29 +148,44 @@ public class RuleSystem : MonoBehaviour
         return pickIron;
     }
 
-    // Atacar a la base del player
+    // Generar Soldats
     private bool CheckCondition6()
+    {
+        bool needSoldiers = false;
+
+        float percentSpawnSoldier = UnityEngine.Random.Range(0.0f, 1.0f);
+
+        if (exempleUnit.food > 50 && exempleUnit.stone > 100 && exempleUnit.currentSoldiers < exempleUnit.maxSoldiers && percentSpawnSoldier < 0.2f)
+        {
+            needSoldiers = true;
+        }
+
+        return needSoldiers;
+    }
+
+    // Atacar a la base del player
+    private bool CheckCondition7()
     {
         bool attackBasePlayer = false;
 
         float percent = UnityEngine.Random.Range(0.0f, 1.0f);
-        Debug.Log(percent);
+        //Debug.Log(percent);
 
-        if (exempleUnit.healthBase >= 500 && exempleUnit.currentCivilsPlayer > 8 && percent < 0.1)
+        if (exempleUnit.healthBase >= 500 && exempleUnit.currentCivilsPlayer > 8 && percent < 0.1f && exempleUnit.currentSoldiers > 10)
         {
             
-            Debug.Log("Entra");
+            //Debug.Log("Entra");
             attackBasePlayer = true;
         }
         else
         {
-            Debug.Log("No Entra");
+            //Debug.Log("No Entra");
         }
 
         return attackBasePlayer;
     }
 
-    private bool CheckCondition7()
+    private bool CheckCondition8()
     {
         bool attackBase = false;
         
@@ -181,7 +197,7 @@ public class RuleSystem : MonoBehaviour
         return attackBase;
     }
 
-    private bool CheckCondition8()
+    private bool CheckCondition9()
     {
         bool attack = false;
         
@@ -192,11 +208,6 @@ public class RuleSystem : MonoBehaviour
         }
 
         return attack;
-    }
-
-    private bool CheckCondition9()
-    {
-        return false;
     }
 
     private bool CheckCondition10()
@@ -217,36 +228,45 @@ public class RuleSystem : MonoBehaviour
     private void PerformAction1()
     {
         Debug.Log("Necessito caçar");
+        exempleUnit.food += 100;
     }
 
     private void PerformAction2()
     {
         Debug.Log("Spawned civil");
+        exempleUnit.food -= 25;
+        exempleUnit.currentCivils += 1;
     }
 
     private void PerformAction3()
     {
         Debug.Log("Necessito fusta");
+        exempleUnit.wood += 100;
     }
 
     private void PerformAction4()
     {
         Debug.Log("Necessito pedra");
+        exempleUnit.stone += 100;
     }
 
     private void PerformAction5()
     {
         Debug.Log("Necessito ferro");
+        exempleUnit.iron += 50;
     }
 
     private void PerformAction6()
     {
-        Debug.Log("Atacar Base de Player");
+        Debug.Log("Spawned soldier");
+        exempleUnit.food -= 50;
+        exempleUnit.stone -= 100;
+        exempleUnit.currentSoldiers += 1;
     }
 
     private void PerformAction7()
     {
-
+        Debug.Log("Atacar Base de Player");
     }
 
     private void PerformAction8()
