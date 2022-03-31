@@ -25,26 +25,53 @@ public class BuildPlacement : MonoBehaviour
     [SerializeField] GameObject tavernToMove;
     [SerializeField] GameObject tavernPrefab;
 
+   Almacen almacen;
+    int rock;
+
+    // mensaje de error de unitHUD
+    public GameObject errMess;
+
+    void Start()
+    {
+        almacen = FindObjectOfType<Almacen>();
+        rock = almacen.rock;
+    }
     public void BuildHouse()
     {
-        ObjToPlace = housePrefab;
-        ObjToMove = casaToMove;
-        rend = GameObject.Find("Zuelo").GetComponent<Renderer>();
-        isBuilding = true;
-        grid.SetActive(true);
-        casaToMove.SetActive(true);
+        if(rock >= 0)
+        {
+            ObjToPlace = housePrefab;
+            ObjToMove = casaToMove;
+            rend = GameObject.Find("Zuelo").GetComponent<Renderer>();
+            isBuilding = true;
+            grid.SetActive(true);
+            casaToMove.SetActive(true);
+        }
+        else
+        {
+            errMess.SetActive(true);
+            StartCoroutine("messageDis");
+        }
         
     }
 
     public void BuildTavern()
     {
-        ObjToPlace = tavernPrefab;
-        ObjToMove = tavernToMove;
+        if (rock >= 0)
+        {
+            ObjToPlace = tavernPrefab;
+            ObjToMove = tavernToMove;
 
-        rend = GameObject.Find("Zuelo").GetComponent<Renderer>();
-        isBuilding = true;
-        grid.SetActive(true);
-        tavernToMove.SetActive(true);
+            rend = GameObject.Find("Zuelo").GetComponent<Renderer>();
+            isBuilding = true;
+            grid.SetActive(true);
+            tavernToMove.SetActive(true);
+        }
+        else
+        {
+            errMess.SetActive(true);
+            StartCoroutine("messageDis");
+        }
 
     }
 
@@ -81,6 +108,12 @@ public class BuildPlacement : MonoBehaviour
 
             }
         }
+    }
+
+    IEnumerator messageDis()
+    {
+        yield return new WaitForSeconds(1f);
+        errMess.SetActive(false);
     }
 }
 

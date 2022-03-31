@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8079626156834724040}
   - component: {fileID: 6324301167510055938}
   - component: {fileID: 6677113926478445804}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Casa
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

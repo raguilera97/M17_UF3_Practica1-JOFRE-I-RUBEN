@@ -9,23 +9,19 @@ public class Townhall : MonoBehaviour
     [SerializeField] Transform spawnVillager;
     [SerializeField] GameObject villager;
 
+
     Almacen almacen;
+    int food;
     
-    
+    // mensaje de error de buildingHUD (dentro del townhall)
+    public GameObject errMess;
+
     bool itsSelected = false;
 
     void Start()
     {
-        /*
         almacen = FindObjectOfType<Almacen>();
-         food = almacen.food;
-         */
-    }
-
-
-    void Update()
-    {
-
+         food = almacen.food; 
     }
 
     public void Selected()
@@ -45,14 +41,23 @@ public class Townhall : MonoBehaviour
 
     public void SpawnVillager()
     {
-        Instantiate(villager, spawnVillager.position, Quaternion.identity);
+        //Instantiate(villager, spawnVillager.position, Quaternion.identity);
 
-        /*if (resources >= 20) { 
+        if (food >= 20) { 
         Instantiate(villager, spawnVillager.position, Quaternion.identity);
+            food -= 20;
+            Debug.Log(food);
         }
         else
         {
-            Debug.Log("No podes.");
-        }*/
+            errMess.SetActive(true);
+            StartCoroutine("messageDis");
+        }
+    }
+
+    IEnumerator messageDis()
+    {
+        yield return new WaitForSeconds(1f);
+        errMess.SetActive(false);
     }
 }
