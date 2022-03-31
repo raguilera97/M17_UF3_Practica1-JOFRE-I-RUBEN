@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : MonoBehaviour
+public class Townhall : MonoBehaviour
 {
     [SerializeField] SelectableObject ringSelector;
     [SerializeField] GameObject HUDPanel;
     [SerializeField] Transform spawnVillager;
     [SerializeField] GameObject villager;
-    [SerializeField] GameObject buildButton;
+
     Almacen almacen;
     
     

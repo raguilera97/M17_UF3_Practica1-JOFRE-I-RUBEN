@@ -7,7 +7,7 @@ public class Selections : MonoBehaviour
 {
     public List<Unit> unitList = new List<Unit>();
     public List<Unit> unitSelected = new List<Unit>();
-    public Building building;
+    public Townhall building;
     public Resource resource;
     public GameObject unitHUD;
     public bool areVillagers = false;
@@ -161,7 +161,7 @@ public class Selections : MonoBehaviour
 
     }
 
-    public void BuildingClick(Building buildingSelect)
+    public void BuildingClick(Townhall buildingSelect)
     {
         building = buildingSelect;
         building.Selected();

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BuildPlacement : MonoBehaviour
 {
+    //Variables construcción bàsicos.
     public GameObject ObjToMove;
     public GameObject ObjToPlace;
     public LayerMask mask;
@@ -11,27 +12,40 @@ public class BuildPlacement : MonoBehaviour
     public float LastPosY;
     public Vector3 mousepos;
     public Renderer rend;
-    
-    public bool isBuilding = false;
     [SerializeField] GameObject grid;
-    [SerializeField] GameObject buildMove;
     
+    //bool condicionar construcción.
+    public bool isBuilding = false;
 
-    /*void Start()
-    {
-        rend = GameObject.Find("Zuelo").GetComponent<Renderer>();
-        isBuilding = true;
-        grid.SetActive(true);
-        buildMove.SetActive(true);
-    }*/
+    //Variables BuildingMenu construir una casa.
+    [SerializeField] GameObject casaToMove;
+    [SerializeField] GameObject housePrefab;
+
+    //Variables BuildingMenu construir una taverna.
+    [SerializeField] GameObject tavernToMove;
+    [SerializeField] GameObject tavernPrefab;
 
     public void BuildHouse()
     {
+        ObjToPlace = housePrefab;
+        ObjToMove = casaToMove;
         rend = GameObject.Find("Zuelo").GetComponent<Renderer>();
         isBuilding = true;
         grid.SetActive(true);
-        buildMove.SetActive(true);
+        casaToMove.SetActive(true);
         
+    }
+
+    public void BuildTavern()
+    {
+        ObjToPlace = tavernPrefab;
+        ObjToMove = tavernToMove;
+
+        rend = GameObject.Find("Zuelo").GetComponent<Renderer>();
+        isBuilding = true;
+        grid.SetActive(true);
+        tavernToMove.SetActive(true);
+
     }
 
 
@@ -59,10 +73,9 @@ public class BuildPlacement : MonoBehaviour
                 if(Input.GetMouseButtonDown(0))
                 {
                     Instantiate(ObjToPlace, ObjToMove.transform.position, ObjToPlace.transform.rotation);
-                    Destroy(gameObject);
                     grid.SetActive(false);
+                    casaToMove.SetActive(false);
                     isBuilding = false;
-                    buildMove.SetActive(false);
 
                 }
 
