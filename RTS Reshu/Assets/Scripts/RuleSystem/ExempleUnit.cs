@@ -26,9 +26,17 @@ public class ExempleUnit : MonoBehaviour
 
     // Civils de IA
     private List<bool> civilsSpawned = new List<bool>();
+    
     //public int civils = 0;
     public int currentCivils = 0;
     public int maxCivils = 20;
+
+    // Soldats de IA
+    private List<bool> soldiersSpawned = new List<bool>();
+
+    //public int civils = 0;
+    public int currentSoldiers = 0;
+    public int maxSoldiers = 40;
 
     // Civils de Player
     public int currentCivilsPlayer = 10;
@@ -46,7 +54,18 @@ public class ExempleUnit : MonoBehaviour
         civilsSpawned.Add(false);
         civilsSpawned.Add(true);
         civilsSpawned.Add(false);
+        soldiersSpawned.Add(false);
+        soldiersSpawned.Add(true);
+        soldiersSpawned.Add(false);
+        soldiersSpawned.Add(true);
+        soldiersSpawned.Add(false);
+        soldiersSpawned.Add(true);
+        soldiersSpawned.Add(true);
+        soldiersSpawned.Add(false);
+        soldiersSpawned.Add(false);
+        soldiersSpawned.Add(true);
         UpdateCivils();
+        UpdateSoldiers();
     }
 
     private void Update()
@@ -68,6 +87,17 @@ public class ExempleUnit : MonoBehaviour
 
         //Debug.Log("Civils spwaned in terrain P: " + civils2);
         //civils2 = 0;
+    }
+
+    private void UpdateSoldiers()
+    {
+        for (int i = 0; i < soldiersSpawned.Count; i++)
+        {
+            if (soldiersSpawned[i] == true)
+            {
+                currentSoldiers++;
+            }
+        }
     }
 
     private string GetAgentName()
