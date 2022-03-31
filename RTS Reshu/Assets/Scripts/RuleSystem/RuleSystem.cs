@@ -22,6 +22,12 @@ public class RuleSystem : MonoBehaviour
         conditions.Add(CheckCondition4);
         conditions.Add(CheckCondition5);
         conditions.Add(CheckCondition6);
+        conditions.Add(CheckCondition7);
+        conditions.Add(CheckCondition8);
+        conditions.Add(CheckCondition9);
+        conditions.Add(CheckCondition10);
+        conditions.Add(CheckCondition11);
+        conditions.Add(CheckCondition12);
 
         actions.Add(PerformAction1);
         actions.Add(PerformAction2);
@@ -29,6 +35,12 @@ public class RuleSystem : MonoBehaviour
         actions.Add(PerformAction4);
         actions.Add(PerformAction5);
         actions.Add(PerformAction6);
+        actions.Add(PerformAction7);
+        actions.Add(PerformAction8);
+        actions.Add(PerformAction9);
+        actions.Add(PerformAction10);
+        actions.Add(PerformAction11);
+        actions.Add(PerformAction12);
     }
 
     private void Start()
@@ -38,7 +50,7 @@ public class RuleSystem : MonoBehaviour
         float stoneNow = exempleUnit.stone;
         float ironNow = exempleUnit.iron;
         float foodNow = exempleUnit.food;
-        float civilsNow = exempleUnit.civils2;
+        float civilsNow = exempleUnit.currentCivils;
         Debug.Log("Vida Base: " + healthNow);
         Debug.Log("Fusta: " + woodNow);
         Debug.Log("Pedra: " + stoneNow);
@@ -65,16 +77,115 @@ public class RuleSystem : MonoBehaviour
             if (conditions[i]())
             {
                 actions[i]();
-                return;
+                //return;
             }
         }
     }
 
+    // Obligació d'obtenir recurs Menjar
     private bool CheckCondition1()
+    {
+        bool huntedMeat = false;
+
+        if (exempleUnit.food < exempleUnit.maxFood && exempleUnit.currentCivils < exempleUnit.maxCivils && exempleUnit.currentCivils != 0)
+        {
+            huntedMeat = true;
+        }
+
+        return huntedMeat;
+    }
+
+    // Creació de nous civils
+    private bool CheckCondition2()
+    {
+        bool needVillagers = false;
+
+        if (exempleUnit.food > 50 && exempleUnit.currentCivils < exempleUnit.maxCivils)
+        {
+            needVillagers = true;
+        }
+
+        return needVillagers;
+    }
+
+    // Obligació d'obtenir recurs Fusta
+    private bool CheckCondition3()
+    {
+        bool toolWood = false;
+
+        if (exempleUnit.wood < exempleUnit.maxWood && exempleUnit.currentCivils >= 4 && exempleUnit.currentCivils != 0)
+        {
+            toolWood = true;
+        }
+
+        return toolWood;
+    }
+
+    // Obligació d'obtenir recurs Pedra
+    private bool CheckCondition4()
+    {
+        bool pickStone = false;
+
+        if (exempleUnit.stone < exempleUnit.maxStone && exempleUnit.currentCivils >= 8 && exempleUnit.currentCivils != 0)
+        {
+            pickStone = true;
+        }
+
+        return pickStone;
+    }
+
+    // Obligació d'obtenir recurs Ferro
+    private bool CheckCondition5()
+    {
+        bool pickIron = false;
+
+        if (exempleUnit.iron < exempleUnit.maxIron && exempleUnit.currentCivils > 10 && exempleUnit.currentCivils != 0)
+        {
+            pickIron = true;
+        }
+
+        return pickIron;
+    }
+
+    // Atacar a la base del player
+    private bool CheckCondition6()
+    {
+        bool attackBasePlayer = false;
+
+        float percent = UnityEngine.Random.Range(0.0f, 1.0f);
+        Debug.Log(percent);
+
+        if (exempleUnit.healthBase >= 500 && exempleUnit.currentCivilsPlayer > 8 && percent < 0.1)
+        {
+            
+            Debug.Log("Entra");
+            attackBasePlayer = true;
+        }
+        else
+        {
+            Debug.Log("No Entra");
+        }
+
+        return attackBasePlayer;
+    }
+
+    private bool CheckCondition7()
+    {
+        bool attackBase = false;
+        
+        if (exempleUnit.healthBase > 250 && exempleUnit.currentCivils > 3)
+        {
+            attackBase = true;
+        }
+
+        return attackBase;
+    }
+
+    private bool CheckCondition8()
     {
         bool attack = false;
         
-        if (exempleUnit.healthBase > 500 && exempleUnit.food > 50 && exempleUnit.civils2 > 4)
+        if (exempleUnit.healthBase > 500 && exempleUnit.food > 50 && exempleUnit.currentCivils > 4)
         {
             attack = true;
             
@@ -83,78 +194,82 @@ public class RuleSystem : MonoBehaviour
         return attack;
     }
 
-    private bool CheckCondition2()
-    {
-        bool attackBase = false;
-        
-        if (exempleUnit.healthBase > 250 && exempleUnit.civils2 > 3)
-        {
-            attackBase = true;
-        }
-
-        return attackBase;
-    }
-
-    private bool CheckCondition3()
-    {
-        bool dance = false;
-
-        if (exempleUnit.healthBase > 300 && exempleUnit.civils2 > 2)
-        {
-            dance = true;
-        }
-
-        return dance;
-    }
-
-    private bool CheckCondition4()
-    {
-        bool huntedMeat = false;
-
-        if (exempleUnit.food < 50 && exempleUnit.civils2 < 2)
-        {
-            huntedMeat = true;
-        }
-
-        return huntedMeat;
-    }
-
-    private bool CheckCondition5()
+    private bool CheckCondition9()
     {
         return false;
     }
 
-    private bool CheckCondition6()
+    private bool CheckCondition10()
+    {
+        return false;
+    }
+
+    private bool CheckCondition11()
+    {
+        return false;
+    }
+
+    private bool CheckCondition12()
     {
         return false;
     }
 
     private void PerformAction1()
     {
-        Debug.Log("Emotional damage");
+        Debug.Log("Necessito caçar");
     }
 
     private void PerformAction2()
     {
-        Debug.Log("A l'attacker, no puedooor");
+        Debug.Log("Spawned civil");
     }
 
     private void PerformAction3()
     {
-        Debug.Log("Dale tu cuerpo alegria macarena he macarena");
+        Debug.Log("Necessito fusta");
     }
 
     private void PerformAction4()
     {
-        Debug.Log("Necessito caçar");
+        Debug.Log("Necessito pedra");
     }
 
     private void PerformAction5()
     {
-
+        Debug.Log("Necessito ferro");
     }
 
     private void PerformAction6()
+    {
+        Debug.Log("Atacar Base de Player");
+    }
+
+    private void PerformAction7()
+    {
+
+    }
+
+    private void PerformAction8()
+    {
+
+    }
+
+    private void PerformAction9()
+    {
+
+    }
+
+    private void PerformAction10()
+    {
+
+    }
+
+    private void PerformAction11()
+    {
+
+    }
+
+    private void PerformAction12()
     {
 
     }

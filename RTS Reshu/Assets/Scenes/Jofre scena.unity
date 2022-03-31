@@ -609,13 +609,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 400517daae8a79f48bf8877a96be3b70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healtBase: 200
+  healthBase: 500
   wood: 100
-  stone: 50
-  iron: 10
-  food: 200
-  civils: 0
-  civils2: 0
+  stone: 100
+  iron: 50
+  food: 50
+  maxHealthBase: 1000
+  maxWood: 500
+  maxStone: 500
+  maxIron: 250
+  maxFood: 200
+  currentCivils: 0
+  maxCivils: 20
 --- !u!4 &2027286474
 Transform:
   m_ObjectHideFlags: 0
