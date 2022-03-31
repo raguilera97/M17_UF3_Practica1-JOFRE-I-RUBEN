@@ -135,6 +135,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3699977469997190635}
+  - {fileID: 2582658095187699139}
   m_Father: {fileID: 3699977469893051028}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -496,6 +497,85 @@ MonoBehaviour:
   m_Text: 'Villager
 
 '
+--- !u!1 &4243696057488780868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2582658095187699139}
+  - component: {fileID: 4364215270423850354}
+  - component: {fileID: 7796605718866749167}
+  m_Layer: 8
+  m_Name: errMess
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2582658095187699139
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4243696057488780868}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3699977469511442029}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 641.801, y: 47.735}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4364215270423850354
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4243696057488780868}
+  m_CullTransparentMesh: 1
+--- !u!114 &7796605718866749167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4243696057488780868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 42
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 4
+    m_MaxSize: 42
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: You don't have enough resources.
 --- !u!65 &678934547985965997
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -509,6 +589,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8, y: 4, z: 8}
   m_Center: {x: -1.6479092, y: 1.7580454, z: 1.6607666}
+--- !u!114 &-5562417431802716845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6753256966644100285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e778f8b33b274d4ba488ece6499fe40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rock: 0
+  food: 0
 --- !u!114 &5863500426280851872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,8 +618,8 @@ MonoBehaviour:
   ringSelector: {fileID: 8519185169590369515}
   HUDPanel: {fileID: 3699977469893051029}
   spawnVillager: {fileID: 3699977469296858101}
-  villager: {fileID: 6217965687234326985, guid: c3a3ff7a78606e949ace95a07f8737a9, type: 3}
-  buildButton: {fileID: 0}
+  villager: {fileID: 3558345487887709532, guid: fb0ed1f665837b24b851051a59c784d8, type: 3}
+  errMess: {fileID: 0}
 --- !u!1001 &188900361743656791
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -723,13 +817,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 921809980d7ed414e8009f72dd6d9e3f, type: 3}
---- !u!1 &6753256966644100285 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 921809980d7ed414e8009f72dd6d9e3f, type: 3}
-  m_PrefabInstance: {fileID: 5870735407558021612}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6265549156022007303 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 921809980d7ed414e8009f72dd6d9e3f, type: 3}
+  m_PrefabInstance: {fileID: 5870735407558021612}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6753256966644100285 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 921809980d7ed414e8009f72dd6d9e3f, type: 3}
   m_PrefabInstance: {fileID: 5870735407558021612}
   m_PrefabAsset: {fileID: 0}
