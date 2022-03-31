@@ -6,7 +6,7 @@ public class RuleSystem : MonoBehaviour
 {
     private float timeSinceLastEvaluation;
     private float evaluationRate = 5.0f;
-    private ExempleUnit exempleUnit;
+    public ExempleUnit exempleUnit;
 
     private delegate bool CheckCondition();
     private delegate void PerformAction();
@@ -20,18 +20,31 @@ public class RuleSystem : MonoBehaviour
         conditions.Add(CheckCondition2);
         conditions.Add(CheckCondition3);
         conditions.Add(CheckCondition4);
+        conditions.Add(CheckCondition5);
+        conditions.Add(CheckCondition6);
 
         actions.Add(PerformAction1);
         actions.Add(PerformAction2);
         actions.Add(PerformAction3);
         actions.Add(PerformAction4);
+        actions.Add(PerformAction5);
+        actions.Add(PerformAction6);
     }
 
     private void Start()
     {
-        /*exempleUnit = GetComponent<ExempleUnit>();
-        float healthNow = exempleUnit.healtBase;
-        Debug.Log(healthNow);*/
+        float healthNow = exempleUnit.healthBase;
+        float woodNow = exempleUnit.wood;
+        float stoneNow = exempleUnit.stone;
+        float ironNow = exempleUnit.iron;
+        float foodNow = exempleUnit.food;
+        float civilsNow = exempleUnit.civils2;
+        Debug.Log("Vida Base: " + healthNow);
+        Debug.Log("Fusta: " + woodNow);
+        Debug.Log("Pedra: " + stoneNow);
+        Debug.Log("Ferro: " + ironNow);
+        Debug.Log("Menjar: " + foodNow);
+        Debug.Log("Civils spawned: " + civilsNow);
     }
 
     private void Update()
@@ -61,7 +74,7 @@ public class RuleSystem : MonoBehaviour
     {
         bool attack = false;
         
-        if (exempleUnit.healtBase > 250 && exempleUnit.food > 50)
+        if (exempleUnit.healthBase > 500 && exempleUnit.food > 50 && exempleUnit.civils2 > 4)
         {
             attack = true;
             
@@ -74,7 +87,7 @@ public class RuleSystem : MonoBehaviour
     {
         bool attackBase = false;
         
-        if (exempleUnit.healtBase < 100)
+        if (exempleUnit.healthBase > 250 && exempleUnit.civils2 > 3)
         {
             attackBase = true;
         }
@@ -84,30 +97,64 @@ public class RuleSystem : MonoBehaviour
 
     private bool CheckCondition3()
     {
-        return false;
+        bool dance = false;
+
+        if (exempleUnit.healthBase > 300 && exempleUnit.civils2 > 2)
+        {
+            dance = true;
+        }
+
+        return dance;
     }
 
     private bool CheckCondition4()
+    {
+        bool huntedMeat = false;
+
+        if (exempleUnit.food < 50 && exempleUnit.civils2 < 2)
+        {
+            huntedMeat = true;
+        }
+
+        return huntedMeat;
+    }
+
+    private bool CheckCondition5()
+    {
+        return false;
+    }
+
+    private bool CheckCondition6()
     {
         return false;
     }
 
     private void PerformAction1()
     {
-        Debug.Log("Pots attacar");
+        Debug.Log("Emotional damage");
     }
 
     private void PerformAction2()
     {
-
+        Debug.Log("A l'attacker, no puedooor");
     }
 
     private void PerformAction3()
     {
-
+        Debug.Log("Dale tu cuerpo alegria macarena he macarena");
     }
 
     private void PerformAction4()
+    {
+        Debug.Log("Necessito caçar");
+    }
+
+    private void PerformAction5()
+    {
+
+    }
+
+    private void PerformAction6()
     {
 
     }
