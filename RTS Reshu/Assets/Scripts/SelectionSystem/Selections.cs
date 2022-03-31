@@ -9,13 +9,17 @@ public class Selections : MonoBehaviour
     public List<Unit> unitSelected = new List<Unit>();
     public Building building;
     public Resource resource;
-    
+    public GameObject unitHUD;
+    public bool areVillagers = false;
+    public bool areWarriors = false;
+
 
     private static Selections _instance;
     public static Selections Instance { get { return _instance; } }
 
     private void Awake()
     {
+        
         if (_instance != null && Instance != null)
         {
             Destroy(this.gameObject);
@@ -31,6 +35,16 @@ public class Selections : MonoBehaviour
         DeselectAll();
         unitSelected.Add(unitAdd);
         unitAdd.Selected();
+        unitHUD.SetActive(true);
+
+        if (unitAdd.name.Contains("Villager"))
+        {
+            unitHUD.transform.GetChild(1).gameObject.SetActive(true);
+        }
+        else if (unitAdd.name.Contains("Warrior"))
+        {
+            unitHUD.transform.GetChild(2).gameObject.SetActive(true);
+        }
     }
 
     
@@ -41,11 +55,55 @@ public class Selections : MonoBehaviour
         {
             unitSelected.Add(unitAdd);
             unitAdd.Selected();
+            unitHUD.SetActive(true);
+
+            if (unitAdd.name.Contains("Villager"))
+            {
+                unitHUD.transform.GetChild(1).gameObject.SetActive(true);
+            }
+            else if (unitAdd.name.Contains("Warrior")){
+                unitHUD.transform.GetChild(2).gameObject.SetActive(true);
+            }
         }
         else
         {
             unitSelected.Remove(unitAdd);
             unitAdd.Unselected();
+
+            areVillagers = false;
+            areWarriors = false;
+
+            foreach (Unit unit in unitSelected)
+            {
+                if (unit.name.Contains("Villager"))
+                {
+                    areVillagers = true;
+                }
+                else if (unit.name.Contains("Warrior"))
+                {
+                    areWarriors = true;
+                }
+                
+            }
+
+            if (areVillagers == false && areWarriors == false)
+            {
+                unitHUD.transform.GetChild(1).gameObject.SetActive(false);
+                unitHUD.transform.GetChild(2).gameObject.SetActive(false);
+                unitHUD.SetActive(false);
+            }
+            else if (areVillagers == false)
+            {
+                unitHUD.transform.GetChild(1).gameObject.SetActive(false);
+            }
+            else if(areWarriors == false)
+            {
+                unitHUD.transform.GetChild(2).gameObject.SetActive(false);
+            }
+
+            
+
+            
         }
     }
 
@@ -55,6 +113,20 @@ public class Selections : MonoBehaviour
         {
             unitSelected.Add(unitAdd);
             unitAdd.Selected();
+
+            foreach (Unit unit in unitSelected)
+            {
+                if (unit.name.Contains("Villager"))
+                {
+                    unitHUD.SetActive(true);
+                    unitHUD.transform.GetChild(1).gameObject.SetActive(true);
+                }
+                else if (unit.name.Contains("Warrior"))
+                {
+                    unitHUD.SetActive(true);
+                    unitHUD.transform.GetChild(2).gameObject.SetActive(true);
+                }
+            }
         }
     }
 
@@ -64,6 +136,10 @@ public class Selections : MonoBehaviour
         foreach(Unit unit in unitSelected)
         {
             unit.Unselected();
+            unitHUD.transform.GetChild(1).gameObject.SetActive(false);
+            unitHUD.transform.GetChild(2).gameObject.SetActive(false);
+            unitHUD.SetActive(false);
+
         }
         unitSelected.Clear();
         
@@ -78,8 +154,6 @@ public class Selections : MonoBehaviour
             building.Unselected();
             building = null;
         }
-
-
     }
 
     public void Deselect(GameObject objectDeselect)
@@ -91,6 +165,15 @@ public class Selections : MonoBehaviour
     {
         building = buildingSelect;
         building.Selected();
+
+        foreach (Unit unit in unitSelected)
+        {
+            unit.Unselected();
+        }
+        unitHUD.transform.GetChild(1).gameObject.SetActive(false);
+        unitHUD.transform.GetChild(2).gameObject.SetActive(false);
+        unitHUD.SetActive(false);
+        unitSelected.Clear();
     }
 
     public void ResourceClick(Resource resourceSelect)

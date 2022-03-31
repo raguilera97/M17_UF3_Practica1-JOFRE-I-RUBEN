@@ -33,9 +33,6 @@ public class Building : MonoBehaviour
         ringSelector.TurnOnSelector();
         itsSelected = true;
         HUDPanel.SetActive(true);
-
-        
-
     }
 
     public void Unselected()
