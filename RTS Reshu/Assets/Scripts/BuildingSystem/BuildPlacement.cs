@@ -12,24 +12,26 @@ public class BuildPlacement : MonoBehaviour
     public Vector3 mousepos;
     public Renderer rend;
     
-    public bool isBuilding = true;
+    public bool isBuilding = false;
     [SerializeField] GameObject grid;
     [SerializeField] GameObject buildMove;
     
 
-    void Start()
+    /*void Start()
     {
         rend = GameObject.Find("Zuelo").GetComponent<Renderer>();
         isBuilding = true;
         grid.SetActive(true);
         buildMove.SetActive(true);
-    }
+    }*/
 
-    public void Build()
+    public void BuildHouse()
     {
         rend = GameObject.Find("Zuelo").GetComponent<Renderer>();
         isBuilding = true;
         grid.SetActive(true);
+        buildMove.SetActive(true);
+        
     }
 
 
@@ -56,7 +58,7 @@ public class BuildPlacement : MonoBehaviour
 
                 if(Input.GetMouseButtonDown(0))
                 {
-                    Instantiate(ObjToPlace, ObjToMove.transform.position, Quaternion.identity);
+                    Instantiate(ObjToPlace, ObjToMove.transform.position, ObjToPlace.transform.rotation);
                     Destroy(gameObject);
                     grid.SetActive(false);
                     isBuilding = false;
