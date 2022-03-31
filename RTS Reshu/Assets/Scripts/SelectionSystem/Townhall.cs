@@ -43,7 +43,7 @@ public class Townhall : MonoBehaviour
     {
         //Instantiate(villager, spawnVillager.position, Quaternion.identity);
 
-        if (food >= 20) { 
+        if (food >= 0) { 
         Instantiate(villager, spawnVillager.position, Quaternion.identity);
             food -= 20;
             Debug.Log(food);
