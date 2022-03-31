@@ -10,15 +10,28 @@ public class ExempleUnit : MonoBehaviour
     private GetName getAgentName;
     private OnAgentSpawned onEnemySpawed;
 
+    // Recursos de IA
     public float healthBase = 500;
     public float wood = 100;
-    public float stone = 50;
-    public float iron = 10;
-    public float food = 200;
+    public float stone = 100;
+    public float iron = 50;
+    public float food = 50;
 
+    // Recursos Limits de IA
+    public float maxHealthBase = 1000;
+    public float maxWood = 500;
+    public float maxStone = 500;
+    public float maxIron = 250;
+    public float maxFood = 200;
+
+    // Civils de IA
     private List<bool> civilsSpawned = new List<bool>();
-    public int civils = 0;
-    public int civils2 = 0;
+    //public int civils = 0;
+    public int currentCivils = 0;
+    public int maxCivils = 20;
+
+    // Civils de Player
+    public int currentCivilsPlayer = 10;
 
     private void Awake()
     {
@@ -43,13 +56,13 @@ public class ExempleUnit : MonoBehaviour
 
     private void UpdateCivils()
     {
-        civils = civilsSpawned.Count;
+        //civils = civilsSpawned.Count;
         //Debug.Log("Civils spwaned in terrain: " + civils);
         for(int i = 0; i < civilsSpawned.Count; i++)
         {
             if (civilsSpawned[i] == true)
             {
-                civils2++;
+                currentCivils++;
             }
         }
 
