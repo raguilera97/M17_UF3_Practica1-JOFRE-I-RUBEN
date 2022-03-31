@@ -10,7 +10,7 @@ public class ExempleUnit : MonoBehaviour
     private GetName getAgentName;
     private OnAgentSpawned onEnemySpawed;
 
-    public float healtBase = 500;
+    public float healthBase = 500;
     public float wood = 100;
     public float stone = 50;
     public float iron = 10;
@@ -33,9 +33,15 @@ public class ExempleUnit : MonoBehaviour
         civilsSpawned.Add(false);
         civilsSpawned.Add(true);
         civilsSpawned.Add(false);
+        UpdateCivils();
     }
 
     private void Update()
+    {
+        
+    }
+
+    private void UpdateCivils()
     {
         civils = civilsSpawned.Count;
         //Debug.Log("Civils spwaned in terrain: " + civils);
@@ -48,7 +54,7 @@ public class ExempleUnit : MonoBehaviour
         }
 
         //Debug.Log("Civils spwaned in terrain P: " + civils2);
-        civils2 = 0;
+        //civils2 = 0;
     }
 
     private string GetAgentName()
