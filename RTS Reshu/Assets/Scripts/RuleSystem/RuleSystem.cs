@@ -228,7 +228,17 @@ public class RuleSystem : MonoBehaviour
     private void PerformAction1()
     {
         Debug.Log("Necessito caçar");
-        exempleUnit.food += 100;
+        float foodNow = exempleUnit.food;
+        float foodOverfloat = foodNow += 100;
+        if(foodOverfloat >= exempleUnit.maxFood)
+        {
+            exempleUnit.food = exempleUnit.maxFood;
+        }
+        else
+        {
+            exempleUnit.food += 100;
+        }
+        
     }
 
     private void PerformAction2()
@@ -241,7 +251,17 @@ public class RuleSystem : MonoBehaviour
     private void PerformAction3()
     {
         Debug.Log("Necessito fusta");
-        exempleUnit.wood += 100;
+        float woodNow = exempleUnit.wood;
+        float woodOverfloat = woodNow += 100;
+        if(woodOverfloat >= exempleUnit.maxWood)
+        {
+            exempleUnit.wood = exempleUnit.maxWood;
+        }
+        else
+        {
+            exempleUnit.wood += 100;
+        }
+        
     }
 
     private void PerformAction4()
