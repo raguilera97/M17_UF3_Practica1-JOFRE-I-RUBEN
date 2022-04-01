@@ -5,7 +5,7 @@ using UnityEngine;
 public class buildingBlocked : MonoBehaviour
 {
     // Este script tienen que llevarlo las blueprints para poder bloquear la construccion si ya hay algun edificio colocado.
-    public bool blocked = false;
+   /* public bool blocked = false;
 
     public void OnCollisionEnter(Collision otherBuilding)
     {
@@ -20,5 +20,5 @@ public class buildingBlocked : MonoBehaviour
         {
             blocked = false;
         }
-    }
+    }*/
 }
