@@ -10,15 +10,36 @@ public class ExempleUnit : MonoBehaviour
     private GetName getAgentName;
     private OnAgentSpawned onEnemySpawed;
 
-    public float healtBase = 500;
+    // Recursos de IA
+    public float healthBase = 500;
     public float wood = 100;
-    public float stone = 50;
-    public float iron = 10;
-    public float food = 200;
+    public float stone = 100;
+    public float iron = 50;
+    public float food = 50;
 
+    // Recursos Limits de IA
+    public float maxHealthBase = 1000;
+    public float maxWood = 500;
+    public float maxStone = 500;
+    public float maxIron = 250;
+    public float maxFood = 200;
+
+    // Civils de IA
     private List<bool> civilsSpawned = new List<bool>();
-    public int civils = 0;
-    public int civils2 = 0;
+    
+    //public int civils = 0;
+    public int currentCivils = 0;
+    public int maxCivils = 20;
+
+    // Soldats de IA
+    private List<bool> soldiersSpawned = new List<bool>();
+
+    //public int civils = 0;
+    public int currentSoldiers = 0;
+    public int maxSoldiers = 40;
+
+    // Civils de Player
+    public int currentCivilsPlayer = 10;
 
     private void Awake()
     {
@@ -33,22 +54,50 @@ public class ExempleUnit : MonoBehaviour
         civilsSpawned.Add(false);
         civilsSpawned.Add(true);
         civilsSpawned.Add(false);
+        soldiersSpawned.Add(false);
+        soldiersSpawned.Add(true);
+        soldiersSpawned.Add(false);
+        soldiersSpawned.Add(true);
+        soldiersSpawned.Add(false);
+        soldiersSpawned.Add(true);
+        soldiersSpawned.Add(true);
+        soldiersSpawned.Add(false);
+        soldiersSpawned.Add(false);
+        soldiersSpawned.Add(true);
+        UpdateCivils();
+        UpdateSoldiers();
     }
 
     private void Update()
     {
-        civils = civilsSpawned.Count;
+        
+    }
+
+    private void UpdateCivils()
+    {
+        //civils = civilsSpawned.Count;
         //Debug.Log("Civils spwaned in terrain: " + civils);
         for(int i = 0; i < civilsSpawned.Count; i++)
         {
             if (civilsSpawned[i] == true)
             {
-                civils2++;
+                currentCivils++;
             }
         }
 
         //Debug.Log("Civils spwaned in terrain P: " + civils2);
-        civils2 = 0;
+        //civils2 = 0;
+    }
+
+    private void UpdateSoldiers()
+    {
+        for (int i = 0; i < soldiersSpawned.Count; i++)
+        {
+            if (soldiersSpawned[i] == true)
+            {
+                currentSoldiers++;
+            }
+        }
     }
 
     private string GetAgentName()

@@ -2,26 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : MonoBehaviour
+public class Townhall : MonoBehaviour
 {
     [SerializeField] SelectableObject ringSelector;
     [SerializeField] GameObject HUDPanel;
     [SerializeField] Transform spawnVillager;
     [SerializeField] GameObject villager;
+
+
     Almacen almacen;
-    int resources;
+    int food;
     
+    // mensaje de error de buildingHUD (dentro del townhall)
+    public GameObject errMess;
+
     bool itsSelected = false;
 
     void Start()
     {
-        //resources = almacen.food;
-    }
-
-
-    void Update()
-    {
-
+        almacen = FindObjectOfType<Almacen>();
+         food = almacen.food; 
     }
 
     public void Selected()
@@ -29,7 +29,6 @@ public class Building : MonoBehaviour
         ringSelector.TurnOnSelector();
         itsSelected = true;
         HUDPanel.SetActive(true);
-
     }
 
     public void Unselected()
@@ -42,14 +41,23 @@ public class Building : MonoBehaviour
 
     public void SpawnVillager()
     {
-        Instantiate(villager, spawnVillager.position, Quaternion.identity);
+        //Instantiate(villager, spawnVillager.position, Quaternion.identity);
 
-        /*if (resources >= 20) { 
+        if (food >= 0) { 
         Instantiate(villager, spawnVillager.position, Quaternion.identity);
+            food -= 20;
+            Debug.Log(food);
         }
         else
         {
-            Debug.Log("No podes.");
-        }*/
+            errMess.SetActive(true);
+            StartCoroutine("messageDis");
+        }
+    }
+
+    IEnumerator messageDis()
+    {
+        yield return new WaitForSeconds(1f);
+        errMess.SetActive(false);
     }
 }
