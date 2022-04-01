@@ -43,6 +43,8 @@ public class VillagerController : MonoBehaviour, ISaveable
             ClickToMove();
         }
         AnimationController();
+
+        Debug.Log(agent.remainingDistance);
     }
 
     
@@ -84,14 +86,11 @@ public class VillagerController : MonoBehaviour, ISaveable
         
         if (Input.GetMouseButtonDown(1))
         {
-            iaRecolect.setMining(false);
-            iaRecolect.setGathering(false);
-            iaRecolect.setgoAlmacen(false);
-            SetGatheringAnimation(false);
-            SetMiningAnimation(false);
+
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(ray.origin, ray.direction, out hitInfo))
             {
+                iaRecolect.OrderIdle();
                 agent.destination = hitInfo.point;
             }
         }

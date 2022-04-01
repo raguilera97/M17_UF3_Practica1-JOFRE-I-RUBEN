@@ -12,6 +12,13 @@ public class Resource : MonoBehaviour
 
     bool itsSelected = false;
 
+    private void Update()
+    {
+        if(resource == 0)
+        {
+            Destroy(this);
+        }
+    }
     public void Selected()
     {
 

@@ -101,14 +101,8 @@ public class Selections : MonoBehaviour
             {
                 resource = resourceSelect;
                 resource.Selected();
-                if (resource.id.Equals("Rock"))
-                {
-                   unit.GetComponent<iaVillager>().Mining(resource);
-                }
-                else if (resource.id.Equals("Bush"))
-                {
-                    unit.GetComponent<iaVillager>().Gathering(resource);
-                }
+                
+                unit.GetComponent<iaVillager>().OrderGathering(resource);
                 
                 StartCoroutine(waitDesactive());
                 break;
