@@ -14,9 +14,9 @@ public class Resource : MonoBehaviour
 
     private void Update()
     {
-        if(resource == 0)
+        if(resource < 1)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
     public void Selected()

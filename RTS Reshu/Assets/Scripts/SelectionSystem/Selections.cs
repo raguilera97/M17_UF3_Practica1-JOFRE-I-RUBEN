@@ -156,8 +156,42 @@ public class Selections : MonoBehaviour
         }
     }
 
-    public void Deselect(GameObject objectDeselect)
+    public void Deselect(Unit unit)
     {
+        bool vill = false;
+        bool war = false;
+
+        unit.Unselected();
+        unitSelected.Remove(unit);
+
+        foreach (Unit unitL in unitSelected)
+        {
+            if (unitL.name.Contains("Villager")){
+                vill = true;
+            }
+            if (unitL.name.Contains("Warrior"))
+            {
+                war = true;
+            }
+        }
+
+        if(!vill && !war)
+        {
+            unitHUD.transform.GetChild(1).gameObject.SetActive(false);
+            unitHUD.transform.GetChild(2).gameObject.SetActive(false);
+            unitHUD.SetActive(false);
+        }
+        else if (!vill)
+        {
+            unitHUD.transform.GetChild(1).gameObject.SetActive(false);
+        }
+        else if (!war)
+        {
+            unitHUD.transform.GetChild(2).gameObject.SetActive(false);
+        }
+
+        
+        
 
     }
 
@@ -188,6 +222,9 @@ public class Selections : MonoBehaviour
                 unit.GetComponent<iaVillager>().OrderGathering(resource);
                 
                 StartCoroutine(waitDesactive());
+
+                Deselect(unit);
+
                 break;
             }
             
