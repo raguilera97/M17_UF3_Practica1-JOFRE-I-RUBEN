@@ -44,7 +44,7 @@ public class VillagerController : MonoBehaviour, ISaveable
         }
         AnimationController();
 
-        Debug.Log(agent.remainingDistance);
+        //Debug.Log(agent.remainingDistance);
     }
 
     
