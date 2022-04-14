@@ -2,13 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExempleUnit : MonoBehaviour
+public class ControladorInfo : MonoBehaviour
 {
-    private delegate string GetName();
-    private delegate bool OnAgentSpawned(string agentName, float health);
-
-    private GetName getAgentName;
-    private OnAgentSpawned onEnemySpawed;
 
     // Recursos de IA
     public float healthBase = 500;
@@ -41,15 +36,25 @@ public class ExempleUnit : MonoBehaviour
     // Civils de Player
     public int currentCivilsPlayer = 10;
 
+    // Component Civils i Soldats
+    public Selections unitats;
+    public float civilss = 0;
+    public List<Unit> civils = new List<Unit>();
+    public Resource roca;
+
+    // Components de elements de recursos en el mapa
+    public List<Resource> recursosMapa = new List<Resource>();
+
+    // Component del ajuntament
+    public Townhall ajuntament;
+
     private void Awake()
     {
-        getAgentName = GetAgentName;
-        onEnemySpawed = OnEnemySpawned;
+        
     }
 
     private void Start()
     {
-        getAgentName();
         civilsSpawned.Add(true);
         civilsSpawned.Add(false);
         civilsSpawned.Add(true);
@@ -66,11 +71,15 @@ public class ExempleUnit : MonoBehaviour
         soldiersSpawned.Add(true);
         UpdateCivils();
         UpdateSoldiers();
+
+        civils = unitats.unitList;
+        //civils[0].GetComponent<iaVillager>().OrderGathering(roca);
+        //Debug.Log("Unitats desplegades" + civils.Count);
     }
 
     private void Update()
     {
-        
+        //civilss = civils.Count;
     }
 
     private void UpdateCivils()
@@ -100,13 +109,4 @@ public class ExempleUnit : MonoBehaviour
         }
     }
 
-    private string GetAgentName()
-    {
-        return null;
-    }
-
-    private bool OnEnemySpawned(string agentName, float health)
-    {
-        return false;
-    }
 }

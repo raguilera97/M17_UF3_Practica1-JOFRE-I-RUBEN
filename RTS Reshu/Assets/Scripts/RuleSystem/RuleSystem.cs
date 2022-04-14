@@ -6,13 +6,15 @@ public class RuleSystem : MonoBehaviour
 {
     private float timeSinceLastEvaluation;
     private float evaluationRate = 5.0f;
-    public ExempleUnit exempleUnit;
+    public ControladorInfo controladorIA;
 
     private delegate bool CheckCondition();
     private delegate void PerformAction();
 
     List<CheckCondition> conditions = new List<CheckCondition>();
     List<PerformAction> actions = new List<PerformAction>();
+
+    List<Unit> civils;
 
     private void Awake()
     {
@@ -45,12 +47,15 @@ public class RuleSystem : MonoBehaviour
 
     private void Start()
     {
-        float healthNow = exempleUnit.healthBase;
-        float woodNow = exempleUnit.wood;
-        float stoneNow = exempleUnit.stone;
-        float ironNow = exempleUnit.iron;
-        float foodNow = exempleUnit.food;
-        float civilsNow = exempleUnit.currentCivils;
+        float healthNow = controladorIA.healthBase;
+        float woodNow = controladorIA.wood;
+        float stoneNow = controladorIA.stone;
+        float ironNow = controladorIA.iron;
+        float foodNow = controladorIA.food;
+        float civilsNow = controladorIA.currentCivils;
+        civils = controladorIA.unitats.unitList;
+        
+        Debug.Log("Unitats desplegades" + civils.Count);
         Debug.Log("Vida Base: " + healthNow);
         Debug.Log("Fusta: " + woodNow);
         Debug.Log("Pedra: " + stoneNow);
@@ -68,6 +73,7 @@ public class RuleSystem : MonoBehaviour
             timeSinceLastEvaluation = 0.0f;
             Evaluate();
         }
+        
     }
 
     private void Evaluate()
@@ -87,10 +93,16 @@ public class RuleSystem : MonoBehaviour
     {
         bool huntedMeat = false;
 
-        if (exempleUnit.food < exempleUnit.maxFood && exempleUnit.currentCivils <= exempleUnit.maxCivils && exempleUnit.currentCivils != 0 
-            && exempleUnit.currentSoldiers <= exempleUnit.maxSoldiers)
+        if (controladorIA.food < controladorIA.maxFood && controladorIA.currentCivils <= controladorIA.maxCivils && controladorIA.currentCivils != 0 
+            && controladorIA.currentSoldiers <= controladorIA.maxSoldiers)
         {
             huntedMeat = true;
+        } else
+        {
+            foreach (Unit unit in civils)
+            {
+                unit.GetComponent<iaVillager>().OrderIdle();
+            }
         }
 
         return huntedMeat;
@@ -101,7 +113,7 @@ public class RuleSystem : MonoBehaviour
     {
         bool needVillagers = false;
 
-        if (exempleUnit.food > 25 && exempleUnit.currentCivils < exempleUnit.maxCivils)
+        if (controladorIA.food > 25 && controladorIA.currentCivils < controladorIA.maxCivils)
         {
             needVillagers = true;
         }
@@ -114,7 +126,7 @@ public class RuleSystem : MonoBehaviour
     {
         bool toolWood = false;
 
-        if (exempleUnit.wood < exempleUnit.maxWood && exempleUnit.currentCivils >= 4 && exempleUnit.currentCivils != 0)
+        if (controladorIA.wood < controladorIA.maxWood && controladorIA.currentCivils >= 4 && controladorIA.currentCivils != 0)
         {
             toolWood = true;
         }
@@ -127,9 +139,17 @@ public class RuleSystem : MonoBehaviour
     {
         bool pickStone = false;
 
-        if (exempleUnit.stone < exempleUnit.maxStone && exempleUnit.currentCivils >= 8 && exempleUnit.currentCivils != 0)
+        if (controladorIA.stone < controladorIA.maxStone && controladorIA.currentCivils >= 8 && controladorIA.currentCivils != 0)
         {
             pickStone = true;
+            
+        } else
+        {
+            foreach(Unit unit in civils)
+            {
+                unit.GetComponent<iaVillager>().OrderIdle();
+            }
+            
         }
 
         return pickStone;
@@ -140,7 +160,7 @@ public class RuleSystem : MonoBehaviour
     {
         bool pickIron = false;
 
-        if (exempleUnit.iron < exempleUnit.maxIron && exempleUnit.currentCivils > 10 && exempleUnit.currentCivils != 0)
+        if (controladorIA.iron < controladorIA.maxIron && controladorIA.currentCivils > 10 && controladorIA.currentCivils != 0)
         {
             pickIron = true;
         }
@@ -155,7 +175,7 @@ public class RuleSystem : MonoBehaviour
 
         float percentSpawnSoldier = UnityEngine.Random.Range(0.0f, 1.0f);
 
-        if (exempleUnit.food > 50 && exempleUnit.stone > 100 && exempleUnit.currentSoldiers < exempleUnit.maxSoldiers && percentSpawnSoldier < 0.2f)
+        if (controladorIA.food > 50 && controladorIA.stone > 100 && controladorIA.currentSoldiers < controladorIA.maxSoldiers && percentSpawnSoldier < 0.2f)
         {
             needSoldiers = true;
         }
@@ -171,7 +191,7 @@ public class RuleSystem : MonoBehaviour
         float percent = UnityEngine.Random.Range(0.0f, 1.0f);
         //Debug.Log(percent);
 
-        if (exempleUnit.healthBase >= 500 && exempleUnit.currentCivilsPlayer > 8 && percent < 0.1f && exempleUnit.currentSoldiers > 10)
+        if (controladorIA.healthBase >= 500 && controladorIA.currentCivilsPlayer > 8 && percent < 0.1f && controladorIA.currentSoldiers > 10)
         {
             
             //Debug.Log("Entra");
@@ -189,7 +209,7 @@ public class RuleSystem : MonoBehaviour
     {
         bool attackBase = false;
         
-        if (exempleUnit.healthBase > 250 && exempleUnit.currentCivils > 3)
+        if (controladorIA.healthBase > 250 && controladorIA.currentCivils > 3)
         {
             attackBase = true;
         }
@@ -201,7 +221,7 @@ public class RuleSystem : MonoBehaviour
     {
         bool attack = false;
         
-        if (exempleUnit.healthBase > 500 && exempleUnit.food > 50 && exempleUnit.currentCivils > 4)
+        if (controladorIA.healthBase > 500 && controladorIA.food > 50 && controladorIA.currentCivils > 4)
         {
             attack = true;
             
@@ -228,15 +248,34 @@ public class RuleSystem : MonoBehaviour
     private void PerformAction1()
     {
         Debug.Log("Necessito caçar");
-        float foodNow = exempleUnit.food;
-        float foodOverfloat = foodNow += 100;
-        if(foodOverfloat >= exempleUnit.maxFood)
+
+        foreach (Unit unit in civils)
         {
-            exempleUnit.food = exempleUnit.maxFood;
+            foreach (Resource resource in controladorIA.recursosMapa)
+            {
+
+                if (resource && resource.id.Equals("Food"))
+                {
+                    if (unit.GetComponent<iaVillager>())
+                    {
+                        unit.GetComponent<iaVillager>().OrderGathering(resource);
+                    }
+
+                }
+                break;
+            }
+
+        }
+
+        float foodNow = controladorIA.food;
+        float foodOverfloat = foodNow += 100;
+        if(foodOverfloat >= controladorIA.maxFood)
+        {
+            controladorIA.food = controladorIA.maxFood;
         }
         else
         {
-            exempleUnit.food += 100;
+            controladorIA.food += 100;
         }
         
     }
@@ -244,22 +283,25 @@ public class RuleSystem : MonoBehaviour
     private void PerformAction2()
     {
         Debug.Log("Spawned civil");
-        exempleUnit.food -= 25;
-        exempleUnit.currentCivils += 1;
+
+        controladorIA.ajuntament.GetComponent<Townhall>().SpawnVillager();
+
+        controladorIA.food -= 25;
+        controladorIA.currentCivils += 1;
     }
 
     private void PerformAction3()
     {
         Debug.Log("Necessito fusta");
-        float woodNow = exempleUnit.wood;
+        float woodNow = controladorIA.wood;
         float woodOverfloat = woodNow += 100;
-        if(woodOverfloat >= exempleUnit.maxWood)
+        if(woodOverfloat >= controladorIA.maxWood)
         {
-            exempleUnit.wood = exempleUnit.maxWood;
+            controladorIA.wood = controladorIA.maxWood;
         }
         else
         {
-            exempleUnit.wood += 100;
+            controladorIA.wood += 100;
         }
         
     }
@@ -267,21 +309,60 @@ public class RuleSystem : MonoBehaviour
     private void PerformAction4()
     {
         Debug.Log("Necessito pedra");
-        exempleUnit.stone += 100;
+
+        foreach (Unit unit in civils)
+        {
+            foreach (Resource resource in controladorIA.recursosMapa)
+            {
+
+                if (resource && resource.id.Equals("Rock"))
+                {
+                    if (unit.GetComponent<iaVillager>() != null)
+                    {
+                        unit.GetComponent<iaVillager>().OrderGathering(resource);
+                    }
+
+                }
+                break;
+            }
+            
+        }
+
+        float stoneNow = controladorIA.stone;
+        float stoneOverfloat = stoneNow += 100;
+        if (stoneOverfloat >= controladorIA.maxStone)
+        {
+            controladorIA.stone = controladorIA.maxStone;
+        }
+        else
+        {
+            controladorIA.stone += 100;
+        }
+        
     }
 
     private void PerformAction5()
     {
         Debug.Log("Necessito ferro");
-        exempleUnit.iron += 50;
+        float ironNow = controladorIA.iron;
+        float ironOverfloat = ironNow += 100;
+        if (ironOverfloat >= controladorIA.maxIron)
+        {
+            controladorIA.iron = controladorIA.maxIron;
+        }
+        else
+        {
+            controladorIA.iron += 50;
+        }
+        
     }
 
     private void PerformAction6()
     {
         Debug.Log("Spawned soldier");
-        exempleUnit.food -= 50;
-        exempleUnit.stone -= 100;
-        exempleUnit.currentSoldiers += 1;
+        controladorIA.food -= 50;
+        controladorIA.stone -= 100;
+        controladorIA.currentSoldiers += 1;
     }
 
     private void PerformAction7()
