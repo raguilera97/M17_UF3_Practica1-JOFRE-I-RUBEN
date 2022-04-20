@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class VillagerController : MonoBehaviour, ISaveable
 {
 
+    
     public GameObject pickaxe;
     public GameObject hammer;
     public Vector3 lookAtTargetPosition;
@@ -14,10 +15,8 @@ public class VillagerController : MonoBehaviour, ISaveable
 
     NavMeshAgent agent;
     Animator anim;
-    RaycastHit hitInfo = new RaycastHit();
     Vector2 smothDeltaPosition = Vector2.zero;
     Vector2 velocity = Vector2.zero;
-    iaVillager iaRecolect;
 
     public int backpackSpace = 20;
     public int[] backpack = new int[] {0,0};
@@ -28,7 +27,6 @@ public class VillagerController : MonoBehaviour, ISaveable
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-        iaRecolect = GetComponent<iaVillager>();
         agent.updatePosition = false;
         almacen = FindObjectOfType<Almacen>();
     }
@@ -36,15 +34,7 @@ public class VillagerController : MonoBehaviour, ISaveable
     // Update is called once per frame
     void Update()
     {
-       
-
-        if (GetComponent<Unit>().ItsSelected())
-        {
-            ClickToMove();
-        }
         AnimationController();
-
-        
         //Debug.Log(agent.remainingDistance);
     }
 
@@ -80,21 +70,6 @@ public class VillagerController : MonoBehaviour, ISaveable
     void OnAnimatorMove()
     {
         transform.position = agent.nextPosition;
-    }
-
-    private void ClickToMove()
-    {
-        
-        if (Input.GetMouseButtonDown(1))
-        {
-
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if(Physics.Raycast(ray.origin, ray.direction, out hitInfo))
-            {
-                iaRecolect.OrderIdle();
-                agent.destination = hitInfo.point;
-            }
-        }
     }
 
     public void SetGatheringAnimation(bool SP)

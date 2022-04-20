@@ -16,12 +16,12 @@ public class Townhall : MonoBehaviour
     // mensaje de error de buildingHUD (dentro del townhall)
     public GameObject errMess;
 
-    bool itsSelected = false;
+    private bool itsSelected = false;
 
     void Start()
     {
         almacen = FindObjectOfType<Almacen>();
-         food = almacen.food; 
+        food = almacen.food; 
     }
 
     public void Selected()

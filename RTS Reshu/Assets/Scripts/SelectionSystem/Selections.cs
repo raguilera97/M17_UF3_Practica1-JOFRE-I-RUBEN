@@ -2,9 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Selections : MonoBehaviour
 {
+
+    RaycastHit hitInfo = new RaycastHit();
+    public Vector3 formationPos = new Vector3(0, 0);
+
     public List<Unit> unitList = new List<Unit>();
     public List<Unit> unitSelected = new List<Unit>();
     public Townhall building;
@@ -27,6 +32,51 @@ public class Selections : MonoBehaviour
         else
         {
             _instance = this;
+        }
+    }
+
+    private void Update()
+    {
+        moveUnits();
+    }
+
+    public void moveUnits()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            int contUnit = 0;
+            double lCuadrado = 0;
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray.origin, ray.direction, out hitInfo))
+            {
+
+                formationPos = hitInfo.point;
+                lCuadrado = Math.Ceiling(Math.Sqrt(unitSelected.Count));
+
+                foreach (Unit unit in unitSelected)
+                {
+                    if (unit.name.Contains("Villager"))
+                    {
+                        unit.gameObject.GetComponent<iaVillager>().OrderIdle();
+                    }
+
+                    contUnit++;
+                    if (contUnit > lCuadrado)
+                    {
+                        contUnit = 1;
+                        formationPos.x = hitInfo.point.x;
+                        formationPos += new Vector3(0, 0, -2);
+                    }
+                    
+
+                    Debug.Log(formationPos);
+
+                    unit.gameObject.GetComponent<NavMeshAgent>().destination = formationPos;
+                    formationPos += new Vector3(2, 0);
+                }
+            }
         }
     }
 

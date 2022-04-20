@@ -5,7 +5,7 @@ public class Unit : MonoBehaviour
 
     [SerializeField] SelectableObject ringSelector;
 
-    bool itsSelected = false;
+    private bool itsSelected = false;
 
     private void Start()
     {

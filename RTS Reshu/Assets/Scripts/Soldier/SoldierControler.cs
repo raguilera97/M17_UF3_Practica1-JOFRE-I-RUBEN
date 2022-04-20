@@ -10,11 +10,10 @@ public class SoldierControler : MonoBehaviour
 
     NavMeshAgent agent;
     Animator anim;
-    RaycastHit hitInfo = new RaycastHit();
     Vector2 smothDeltaPosition = Vector2.zero;
     Vector2 velocity = Vector2.zero;
 
-
+    
     private bool walking;
 
     // Start is called before the first frame update
@@ -29,10 +28,6 @@ public class SoldierControler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GetComponent<Unit>().ItsSelected())
-        {
-            ClickToMove();
-        }
         AnimationController();
     }
 
@@ -65,17 +60,5 @@ public class SoldierControler : MonoBehaviour
     void OnAnimatorMove()
     {
         transform.position = agent.nextPosition;
-    }
-
-    private void ClickToMove()
-    {
-        if (Input.GetMouseButtonDown(1))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray.origin, ray.direction, out hitInfo))
-            {
-                agent.destination = hitInfo.point;
-            }
-        }
     }
 }

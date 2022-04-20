@@ -10,7 +10,7 @@ public class Resource : MonoBehaviour
     public string id;
     public int resource = 200;
 
-    bool itsSelected = false;
+    private bool itsSelected = false;
 
     private void Update()
     {
