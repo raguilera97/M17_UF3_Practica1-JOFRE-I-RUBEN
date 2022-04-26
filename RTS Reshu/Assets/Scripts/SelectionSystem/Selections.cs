@@ -17,7 +17,8 @@ public class Selections : MonoBehaviour
     public GameObject unitHUD;
     public bool areVillagers = false;
     public bool areWarriors = false;
-
+    public bool formTri = false;
+    public bool formRec = false;
 
     private static Selections _instance;
     public static Selections Instance { get { return _instance; } }
@@ -44,8 +45,6 @@ public class Selections : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            int contUnit = 0;
-            double lCuadrado = 0;
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -53,31 +52,138 @@ public class Selections : MonoBehaviour
             {
 
                 formationPos = hitInfo.point;
-                lCuadrado = Math.Ceiling(Math.Sqrt(unitSelected.Count));
-
-                foreach (Unit unit in unitSelected)
+                if(formTri != false)
                 {
-                    if (unit.name.Contains("Villager"))
-                    {
-                        unit.gameObject.GetComponent<iaVillager>().OrderIdle();
-                    }
-
-                    contUnit++;
-                    if (contUnit > lCuadrado)
-                    {
-                        contUnit = 1;
-                        formationPos.x = hitInfo.point.x;
-                        formationPos += new Vector3(0, 0, -2);
-                    }
-                    
-
-                    Debug.Log(formationPos);
-
-                    unit.gameObject.GetComponent<NavMeshAgent>().destination = formationPos;
-                    formationPos += new Vector3(2, 0);
+                    FormTri();
                 }
+                else if (formRec != false)
+                {
+                    FormRec();
+                }
+                else
+                {
+                    FormQuad();
+                }
+
+
             }
         }
+    }
+
+    public void FormQuad()
+    {
+        formTri = false;
+        formRec = false;
+        int contUnit = 0;
+        double lCuadrado = 0;
+
+        lCuadrado = Math.Ceiling(Math.Sqrt(unitSelected.Count));
+
+        foreach (Unit unit in unitSelected)
+        {
+            if (unit.name.Contains("Villager"))
+            {
+                unit.gameObject.GetComponent<iaVillager>().OrderIdle();
+            }
+
+            contUnit++;
+            if (contUnit > lCuadrado)
+            {
+                contUnit = 1;
+                formationPos.x = hitInfo.point.x;
+                formationPos += new Vector3(0, 0, 2);
+            }
+
+
+            Debug.Log(formationPos);
+
+            unit.gameObject.GetComponent<NavMeshAgent>().destination = formationPos;
+            formationPos += new Vector3(2, 0);
+        }
+    }
+
+    public void FormTri()
+    {
+        formTri = true;
+        formRec = false;
+        List<Vector3> unitPositions = new List<Vector3>();
+
+        // Offset starts at 0, then each row is applied change for half of spacing
+        float currentRowOffset = 0f;
+        float x, z;
+
+        for (int row = 0; unitPositions.Count < unitSelected.Count; row++)
+        {
+            // Current unit positions are the index of first unit in row
+            var columnsInRow = row + 1;
+            var firstIndexInRow = unitPositions.Count;
+
+            for (int column = 0; column < columnsInRow; column++)
+            {
+                x = column * 2 + currentRowOffset;
+                z = row * 2;
+
+                // Check if centering is enabled and if row has less than maximum
+                // allowed units within the row.
+                if (
+                    row != 0 &&
+                    firstIndexInRow + columnsInRow > unitSelected.Count)
+                {
+                    // Alter the offset to center the units that do not fill the row
+                    var emptySlots = firstIndexInRow + columnsInRow - unitSelected.Count;
+                    x += emptySlots / 2f * 2;
+                }
+
+                unitPositions.Add(new Vector3(x, 0, -z));
+
+                if (unitPositions.Count >= unitSelected.Count) break;
+            }
+
+            currentRowOffset -= 2 / 2;
+        }
+
+        int count = 0;
+        
+        foreach (Unit unit in unitSelected)
+        {
+            formationPos = hitInfo.point;
+            formationPos += unitPositions.ToArray()[count];
+            unit.gameObject.GetComponent<NavMeshAgent>().destination = formationPos;
+            count++;
+        }
+
+    }
+
+    public void FormRec()
+    {
+        formRec = true;
+        formTri = false;
+        int countUnit = 0;
+
+        foreach (Unit unit in unitSelected){
+
+            if (unit.name.Contains("Villager"))
+            {
+                unit.gameObject.GetComponent<iaVillager>().OrderIdle();
+            }
+
+            countUnit++;
+
+            if (countUnit > 7)
+            {
+                countUnit = 1;
+                formationPos.x = hitInfo.point.x;
+                formationPos += new Vector3(0, 0, -2);
+            }
+
+
+            Debug.Log(formationPos);
+
+            unit.gameObject.GetComponent<NavMeshAgent>().destination = formationPos;
+            formationPos += new Vector3(2, 0);
+
+        }
+
     }
 
     public void SelectClick(Unit unitAdd)
