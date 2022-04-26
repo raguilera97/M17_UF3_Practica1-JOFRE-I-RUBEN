@@ -10,9 +10,7 @@ public class Townhall : MonoBehaviour
     [SerializeField] GameObject villager;
 
 
-    Almacen almacen;
-    int food;
-    
+    Almacen almacen;    
     // mensaje de error de buildingHUD (dentro del townhall)
     public GameObject errMess;
 
@@ -21,7 +19,7 @@ public class Townhall : MonoBehaviour
     void Start()
     {
         almacen = FindObjectOfType<Almacen>();
-        food = almacen.food; 
+         
     }
 
     public void Selected()
@@ -43,10 +41,10 @@ public class Townhall : MonoBehaviour
     {
         //Instantiate(villager, spawnVillager.position, Quaternion.identity);
 
-        if (food >= 0) { 
+        if (almacen.food > 0) { 
         Instantiate(villager, spawnVillager.position, Quaternion.identity);
-            food -= 20;
-            Debug.Log(food);
+            almacen.food -= 20;
+            Debug.Log(almacen.food);
         }
         else
         {

@@ -385,6 +385,7 @@ MonoBehaviour:
   ringSelector: {fileID: 7666757930318567583}
   id: Bush
   resource: 200
+  resourceOcu: 0
 --- !u!1 &11842276
 GameObject:
   m_ObjectHideFlags: 0
@@ -1518,10 +1519,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.75
       objectReference: {fileID: 0}
-    - target: {fileID: 775735200532714218, guid: 9202475de18506c4382b92f1c3eb7883, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 870157912849412711, guid: 9202475de18506c4382b92f1c3eb7883, type: 3}
       propertyPath: m_SizeDelta.y
       value: -843.32086
@@ -1574,6 +1571,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1605179797325306439, guid: 9202475de18506c4382b92f1c3eb7883, type: 3}
+      propertyPath: food
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1911733325770675484, guid: 9202475de18506c4382b92f1c3eb7883, type: 3}
       propertyPath: m_Name
       value: Ayuntamiento
@@ -1604,6 +1605,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3693326634810244734, guid: 9202475de18506c4382b92f1c3eb7883, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4311787555488371110, guid: 9202475de18506c4382b92f1c3eb7883, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

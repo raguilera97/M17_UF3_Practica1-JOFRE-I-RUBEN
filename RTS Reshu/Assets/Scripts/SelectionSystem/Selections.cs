@@ -207,6 +207,9 @@ public class Selections : MonoBehaviour
 
     public void ShiftClickSelect(Unit unitAdd)
     {
+        DeselectBuilding();
+
+
         if (!unitSelected.Contains(unitAdd))
         {
             unitSelected.Add(unitAdd);
@@ -265,6 +268,7 @@ public class Selections : MonoBehaviour
 
     public void DragSelect (Unit unitAdd)
     {
+        DeselectBuilding();
         if (!unitSelected.Contains(unitAdd))
         {
             unitSelected.Add(unitAdd);
@@ -346,9 +350,16 @@ public class Selections : MonoBehaviour
             unitHUD.transform.GetChild(2).gameObject.SetActive(false);
         }
 
-        
-        
+    }
 
+    public void DeselectBuilding()
+    {
+        if(building != null)
+        {
+            building.Unselected();
+        }
+        building = null;
+        
     }
 
     public void BuildingClick(Townhall buildingSelect)
