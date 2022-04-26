@@ -259,10 +259,11 @@ public class RuleSystem : MonoBehaviour
                     if (unit.GetComponent<iaVillager>())
                     {
                         unit.GetComponent<iaVillager>().OrderGathering(resource);
+                        break;
                     }
 
                 }
-                break;
+                
             }
 
         }
@@ -314,16 +315,17 @@ public class RuleSystem : MonoBehaviour
         {
             foreach (Resource resource in controladorIA.recursosMapa)
             {
-
                 if (resource && resource.id.Equals("Rock"))
                 {
-                    if (unit.GetComponent<iaVillager>() != null)
+                    if (resource.resourceOcu == false)
                     {
+                        resource.resourceOcu = true;
                         unit.GetComponent<iaVillager>().OrderGathering(resource);
+                        break;
                     }
 
                 }
-                break;
+                resource.resourceOcu = false;
             }
             
         }
