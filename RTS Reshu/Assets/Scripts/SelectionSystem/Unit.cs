@@ -6,6 +6,7 @@ public class Unit : MonoBehaviour
     [SerializeField] SelectableObject ringSelector;
 
     private bool itsSelected = false;
+    public bool civilOcupat = false;
 
     private void Start()
     {
