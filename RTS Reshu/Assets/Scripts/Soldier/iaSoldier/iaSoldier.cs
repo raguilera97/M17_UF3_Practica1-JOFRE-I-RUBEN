@@ -22,7 +22,7 @@ public class iaSoldier : MonoBehaviour
 
     void Start()
     {
-        target = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        //target = GameObject.FindWithTag("Player").GetComponent<Transform>();
     }
 
     void Update()

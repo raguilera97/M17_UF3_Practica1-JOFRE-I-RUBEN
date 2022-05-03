@@ -94,9 +94,6 @@ public class Selections : MonoBehaviour
                 formationPos += new Vector3(0, 0, 2);
             }
 
-
-            Debug.Log(formationPos);
-
             unit.gameObject.GetComponent<NavMeshAgent>().destination = formationPos;
             formationPos += new Vector3(2, 0);
         }

@@ -14,14 +14,14 @@ public class IdleSoldierState : iStateWarrior
         
     }
 
-    public iStateWarrior OnUpdate(iaSoldier character)
+   public iStateWarrior OnUpdate(iaSoldier character)
     {
-        float distanceToPlayer = Vector3.Distance(character.target.position, character.transform.position);
+        //float distanceToPlayer = Vector3.Distance(character.target.position, character.transform.position);
 
-        if (distanceToPlayer < character.pursueDistance)
-        {
-            return new PursueSoldierState();
-        }
+        //if (distanceToPlayer < character.pursueDistance)
+        //{
+         //   return new PursueSoldierState();
+        //}
 
         return null;
     }
