@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8079626156834724040}
   - component: {fileID: 6324301167510055938}
   - component: {fileID: 6677113926478445804}
+  - component: {fileID: 3377140582727179129}
   m_Layer: 0
   m_Name: Casa
   m_TagString: Building
@@ -91,7 +92,23 @@ BoxCollider:
   m_GameObject: {fileID: 5531706871018802647}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.10824881, y: 0.06763365, z: 0.057678517}
   m_Center: {x: 0.0045200824, y: 0.008113572, z: 0.019997103}
+--- !u!208 &3377140582727179129
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5531706871018802647}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.06, y: 0.045, z: 0.025}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0.015}
+  m_TimeToStationary: 0.5

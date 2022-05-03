@@ -587,8 +587,24 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8, y: 4, z: 8}
+  m_Size: {x: 9, y: 4, z: 9}
   m_Center: {x: -1.6479092, y: 1.7580454, z: 1.6607666}
+--- !u!208 &2430353767455619652
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6753256966644100285}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 4, y: 2.5, z: 4}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -2, y: 0, z: 1}
+  m_TimeToStationary: 0.5
 --- !u!114 &-5562417431802716845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -602,7 +618,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rock: 0
-  food: 0
+  food: 20
+  foodT: {fileID: 0}
+  rockT: {fileID: 0}
 --- !u!114 &5863500426280851872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -619,7 +637,7 @@ MonoBehaviour:
   HUDPanel: {fileID: 3699977469893051029}
   spawnVillager: {fileID: 3699977469296858101}
   villager: {fileID: 3558345487887709532, guid: fb0ed1f665837b24b851051a59c784d8, type: 3}
-  errMess: {fileID: 0}
+  errMess: {fileID: 4243696057488780868}
 --- !u!1001 &188900361743656791
 PrefabInstance:
   m_ObjectHideFlags: 0
