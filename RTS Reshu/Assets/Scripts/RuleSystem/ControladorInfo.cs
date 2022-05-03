@@ -8,9 +8,10 @@ public class ControladorInfo : MonoBehaviour
     // Recursos de IA
     public float healthBase = 500;
     public float wood = 100;
-    public float stone = 100;
+    public float food = 0;
+    public float stone = 0;
     public float iron = 50;
-    public float food = 50;
+    
 
     // Recursos Limits de IA
     public float maxHealthBase = 1000;
@@ -40,13 +41,17 @@ public class ControladorInfo : MonoBehaviour
     public Selections unitats;
     public float civilss = 0;
     public List<Unit> civils = new List<Unit>();
-    public Resource roca;
+    public bool civilOcu = false;
 
     // Components de elements de recursos en el mapa
     public List<Resource> recursosMapa = new List<Resource>();
 
     // Component del ajuntament
     public Townhall ajuntament;
+    public Almacen ajuntamentRecursos;
+
+    // Component del temps de joc
+    public TimeGameSimulator timeGameSimulator;
 
     private void Awake()
     {

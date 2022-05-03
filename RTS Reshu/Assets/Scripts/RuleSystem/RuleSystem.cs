@@ -88,24 +88,17 @@ public class RuleSystem : MonoBehaviour
         }
     }
 
-    // Obligació d'obtenir recurs Menjar
+    // Obligació d'obtenir Multicontrol de recurs
     private bool CheckCondition1()
     {
-        bool huntedMeat = false;
+        bool needResources = false;
 
-        if (controladorIA.food < controladorIA.maxFood && controladorIA.currentCivils <= controladorIA.maxCivils && controladorIA.currentCivils != 0 
-            && controladorIA.currentSoldiers <= controladorIA.maxSoldiers)
+        if (controladorIA.ajuntamentRecursos.food < controladorIA.maxFood || controladorIA.ajuntamentRecursos.rock < controladorIA.maxStone)
         {
-            huntedMeat = true;
-        } else
-        {
-            foreach (Unit unit in civils)
-            {
-                unit.GetComponent<iaVillager>().OrderIdle();
-            }
+            needResources = true;
         }
 
-        return huntedMeat;
+        return needResources;
     }
 
     // Creació de nous civils
@@ -121,7 +114,7 @@ public class RuleSystem : MonoBehaviour
         return needVillagers;
     }
 
-    // Obligació d'obtenir recurs Fusta
+    // 
     private bool CheckCondition3()
     {
         bool toolWood = false;
@@ -134,28 +127,28 @@ public class RuleSystem : MonoBehaviour
         return toolWood;
     }
 
-    // Obligació d'obtenir recurs Pedra
+    // 
     private bool CheckCondition4()
     {
         bool pickStone = false;
 
-        if (controladorIA.stone < controladorIA.maxStone && controladorIA.currentCivils >= 8 && controladorIA.currentCivils != 0)
+        if (controladorIA.ajuntamentRecursos.rock < controladorIA.maxStone && controladorIA.currentCivils >= 8 && controladorIA.currentCivils != 0)
         {
             pickStone = true;
             
-        } else
+        } /*else
         {
             foreach(Unit unit in civils)
             {
                 unit.GetComponent<iaVillager>().OrderIdle();
+                
             }
             
-        }
-
+        }*/
         return pickStone;
     }
 
-    // Obligació d'obtenir recurs Ferro
+    // 
     private bool CheckCondition5()
     {
         bool pickIron = false;
@@ -247,48 +240,161 @@ public class RuleSystem : MonoBehaviour
 
     private void PerformAction1()
     {
-        Debug.Log("Necessito caçar");
+        Debug.Log("Buscar recursos");
 
         foreach (Unit unit in civils)
         {
-            foreach (Resource resource in controladorIA.recursosMapa)
+            unit.civilOcupat = true;
+            if (unit.name.Contains("Villager"))
             {
-
-                if (resource && resource.id.Equals("Food"))
+                foreach (Resource resource in controladorIA.recursosMapa)
                 {
-                    if (unit.GetComponent<iaVillager>())
+                    if (controladorIA.currentCivils < 4)
                     {
-                        unit.GetComponent<iaVillager>().OrderGathering(resource);
-                        break;
+                        if (controladorIA.ajuntamentRecursos.food < controladorIA.maxFood && resource.id.Equals("Bush"))
+                        {
+
+                            if (resource.resourceOcu == false && unit.civilOcupat == true)
+                            {
+                                if (unit.GetComponent<iaVillager>().resourceSelect == null)
+                                {
+                                    if (resource == null)
+                                    {
+                                        resource.resourceOcu = false;
+                                        unit.GetComponent<iaVillager>().OrderIdle();
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        resource.resourceOcu = true;
+                                        unit.GetComponent<iaVillager>().OrderGathering(resource);
+                                        unit.civilOcupat = false;
+                                        break;
+                                    }
+
+                                }
+
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        if (controladorIA.ajuntamentRecursos.food < controladorIA.maxFood && resource.id.Equals("Bush"))
+                        {
+
+                            if (resource.resourceOcu == false && unit.civilOcupat == true)
+                            {
+                                if (unit.GetComponent<iaVillager>().resourceSelect == null)
+                                {
+                                    if (resource == null)
+                                    {
+                                        resource.resourceOcu = false;
+                                        unit.GetComponent<iaVillager>().OrderIdle();
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        resource.resourceOcu = true;
+                                        unit.GetComponent<iaVillager>().OrderGathering(resource);
+                                        unit.civilOcupat = false;
+                                        break;
+                                    }
+
+                                }
+
+                            }
+
+                        }
+                        else if (controladorIA.ajuntamentRecursos.rock < controladorIA.maxStone && resource.id.Equals("Rock"))
+                        {
+                            //controladorIA.civilOcu = true;
+                            if (resource.resourceOcu == false && unit.civilOcupat == true)
+                            {
+                                if (unit.GetComponent<iaVillager>().resourceSelect == null)
+                                {
+                                    resource.resourceOcu = true;
+                                    if (resource == null)
+                                    {
+                                        resource.resourceOcu = false;
+                                        unit.GetComponent<iaVillager>().OrderIdle();
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        unit.GetComponent<iaVillager>().OrderGathering(resource);
+                                        unit.civilOcupat = false;
+                                        break;
+                                    }
+
+                                }
+
+                            }
+                        }
                     }
 
                 }
-                
             }
-
+            if(controladorIA.timeGameSimulator.currentTime < 30f)
+            {
+                Debug.Log("More villagers");
+                pas5seconds();
+                //break;
+            }
+            else
+            {
+                //break;
+            }
+            
         }
 
+        // Control dels recursos Menjar
         float foodNow = controladorIA.food;
-        float foodOverfloat = foodNow += 100;
-        if(foodOverfloat >= controladorIA.maxFood)
+        float foodOverfloat = foodNow;
+        if (foodOverfloat >= controladorIA.maxFood)
         {
             controladorIA.food = controladorIA.maxFood;
         }
         else
         {
-            controladorIA.food += 100;
+            controladorIA.food = controladorIA.ajuntamentRecursos.food;
+        }
+
+        // Control dels recursos Pedra
+        float stoneNow = controladorIA.stone;
+        float stoneOverfloat = stoneNow;
+        if (stoneOverfloat >= controladorIA.maxStone)
+        {
+            controladorIA.stone = controladorIA.maxStone;
+        }
+        else
+        {
+            controladorIA.stone = controladorIA.ajuntamentRecursos.rock;
         }
         
+    }
+
+    public void pas5seconds()
+    {
+        StartCoroutine(twoVillagerResource());
+    }
+
+    public IEnumerator twoVillagerResource()
+    {
+        yield return new WaitForSeconds(5f);
     }
 
     private void PerformAction2()
     {
         Debug.Log("Spawned civil");
+        if (controladorIA.ajuntamentRecursos.food >= 25)
+        {
+            controladorIA.ajuntament.GetComponent<Townhall>().SpawnVillager();
 
-        controladorIA.ajuntament.GetComponent<Townhall>().SpawnVillager();
-
-        controladorIA.food -= 25;
-        controladorIA.currentCivils += 1;
+            controladorIA.ajuntamentRecursos.food -= 25;
+            controladorIA.currentCivils += 1;
+            controladorIA.food = controladorIA.ajuntamentRecursos.food;
+        }
     }
 
     private void PerformAction3()
@@ -309,37 +415,6 @@ public class RuleSystem : MonoBehaviour
 
     private void PerformAction4()
     {
-        Debug.Log("Necessito pedra");
-
-        foreach (Unit unit in civils)
-        {
-            foreach (Resource resource in controladorIA.recursosMapa)
-            {
-                if (resource && resource.id.Equals("Rock"))
-                {
-                    if (resource.resourceOcu == false)
-                    {
-                        resource.resourceOcu = true;
-                        unit.GetComponent<iaVillager>().OrderGathering(resource);
-                        break;
-                    }
-
-                }
-                resource.resourceOcu = false;
-            }
-            
-        }
-
-        float stoneNow = controladorIA.stone;
-        float stoneOverfloat = stoneNow += 100;
-        if (stoneOverfloat >= controladorIA.maxStone)
-        {
-            controladorIA.stone = controladorIA.maxStone;
-        }
-        else
-        {
-            controladorIA.stone += 100;
-        }
         
     }
 
@@ -362,9 +437,14 @@ public class RuleSystem : MonoBehaviour
     private void PerformAction6()
     {
         Debug.Log("Spawned soldier");
-        controladorIA.food -= 50;
-        controladorIA.stone -= 100;
-        controladorIA.currentSoldiers += 1;
+        if (controladorIA.ajuntamentRecursos.food >= 50 && controladorIA.ajuntamentRecursos.rock >= 100)
+        {
+            controladorIA.ajuntamentRecursos.food -= 50;
+            controladorIA.ajuntamentRecursos.rock -= 100;
+            controladorIA.currentSoldiers += 1;
+            controladorIA.food = controladorIA.ajuntamentRecursos.food;
+            controladorIA.stone = controladorIA.ajuntamentRecursos.rock;
+        }
     }
 
     private void PerformAction7()
