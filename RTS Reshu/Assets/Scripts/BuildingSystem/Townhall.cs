@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Townhall : MonoBehaviour
 {
@@ -14,12 +15,22 @@ public class Townhall : MonoBehaviour
     // mensaje de error de buildingHUD (dentro del townhall)
     public GameObject errMess;
 
+    public int maxPopulation;
+    public int currentPopulation;
+    public Text tCurrentPop, tMaxPop;
+
     private bool itsSelected = false;
 
     void Start()
     {
         almacen = FindObjectOfType<Almacen>();
          
+    }
+
+    private void Update()
+    {
+        tCurrentPop.text = currentPopulation.ToString();
+        tMaxPop.text = maxPopulation.ToString();
     }
 
     public void Selected()
@@ -56,6 +67,7 @@ public class Townhall : MonoBehaviour
     {
         Instantiate(villager, spawnVillager.position, Quaternion.identity);
         almacen.food -= 20;
+        currentPopulation += 1;
     }
 
     IEnumerator messageDis()

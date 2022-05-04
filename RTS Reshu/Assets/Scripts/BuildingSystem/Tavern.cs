@@ -11,6 +11,7 @@ public class Tavern : MonoBehaviour
     [SerializeField] GameObject shieldWarrior;
 
     [SerializeField] Almacen almacen;
+    Townhall townhall;
 
     // mensaje de error de buildingHUD (dentro del townhall)
     public GameObject errMess;
@@ -60,6 +61,7 @@ public class Tavern : MonoBehaviour
         Instantiate(warrior, spawnWarrior.position, Quaternion.identity);
         almacen.food -= 20;
         almacen.rock -= 10;
+        townhall.currentPopulation += 1;
     }
 
     public void ShieldSpawnWarrior()
@@ -84,6 +86,7 @@ public class Tavern : MonoBehaviour
         Instantiate(shieldWarrior, spawnWarrior.position, Quaternion.identity);
         almacen.food -= 30;
         almacen.rock -= 20;
+        townhall.currentPopulation += 1;
     }
 
     IEnumerator messageDis()
