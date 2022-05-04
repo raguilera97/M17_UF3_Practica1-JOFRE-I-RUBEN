@@ -25,7 +25,8 @@ public class BuildPlacement : MonoBehaviour
     [SerializeField] GameObject tavernToMove;
     [SerializeField] GameObject tavernPrefab;
 
-   Almacen almacen;
+    public Townhall townhall;
+    Almacen almacen;
     int rock;
 
     // mensaje de error de unitHUD
@@ -34,11 +35,21 @@ public class BuildPlacement : MonoBehaviour
     void Start()
     {
         almacen = FindObjectOfType<Almacen>();
-        rock = almacen.rock;
     }
+
+    void Update()
+    {
+        rock = almacen.rock;
+
+        if (isBuilding == true)
+        {
+            BuildIt();
+        }
+    }
+
     public void BuildHouse()
     {
-        if(rock >= 0)
+        if(rock >= 40)
         {
             ObjToPlace = housePrefab;
             ObjToMove = casaToMove;
@@ -46,6 +57,7 @@ public class BuildPlacement : MonoBehaviour
             isBuilding = true;
             grid.SetActive(true);
             casaToMove.SetActive(true);
+                        
         }
         else
         {
@@ -57,7 +69,7 @@ public class BuildPlacement : MonoBehaviour
 
     public void BuildTavern()
     {
-        if (rock >= 0)
+        if (rock >= 80)
         {
             ObjToPlace = tavernPrefab;
             ObjToMove = tavernToMove;
@@ -75,44 +87,52 @@ public class BuildPlacement : MonoBehaviour
 
     }
 
-
-    void Update()
+    public void BuildIt()
     {
-        if(isBuilding == true)
+        mousepos = Input.mousePosition;
+        Ray ray = Camera.main.ScreenPointToRay(mousepos);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, mask))
         {
-            mousepos = Input.mousePosition;
-            Ray ray = Camera.main.ScreenPointToRay(mousepos);
-            RaycastHit hit;
+            int PosX = (int)Mathf.Round(hit.point.x);
+            int PosZ = (int)Mathf.Round(hit.point.z);
 
-            if(Physics.Raycast(ray, out hit, Mathf.Infinity, mask))
+            if (PosX != LastPosX || PosZ != LastPosZ)
             {
-                int PosX = (int)Mathf.Round(hit.point.x);
-                int PosZ = (int)Mathf.Round(hit.point.z);
+                LastPosX = PosX;
+                LastPosZ = PosZ;
+                ObjToMove.transform.position = new Vector3(PosX, LastPosY, PosZ);
 
-                if(PosX != LastPosX || PosZ != LastPosZ)
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                Instantiate(ObjToPlace, ObjToMove.transform.position, ObjToPlace.transform.rotation);
+                grid.SetActive(false);
+                casaToMove.SetActive(false);
+                isBuilding = false;
+
+                if (ObjToPlace.name.Contains("Casa"))
                 {
-                    LastPosX = PosX;
-                    LastPosZ = PosZ;
-                    ObjToMove.transform.position = new Vector3(PosX, LastPosY, PosZ);
-                    
+                    townhall.maxPopulation += 3;
+
+                    almacen.rock -= 40;
                 }
-
-                if(Input.GetMouseButtonDown(0))
+                else
                 {
-                    Instantiate(ObjToPlace, ObjToMove.transform.position, ObjToPlace.transform.rotation);
-                    grid.SetActive(false);
-                    casaToMove.SetActive(false);
-                    isBuilding = false;
-
+                    almacen.rock -= 80;
                 }
 
             }
+
         }
     }
 
     IEnumerator messageDis()
     {
         yield return new WaitForSeconds(1f);
+        isBuilding = false;
         errMess.SetActive(false);
     }
 }

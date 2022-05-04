@@ -21,6 +21,7 @@ public class Tavern : MonoBehaviour
     void Start()
     {
         almacen = FindObjectOfType<Almacen>();
+        townhall = FindObjectOfType<Townhall>();
 
     }
 
@@ -43,7 +44,7 @@ public class Tavern : MonoBehaviour
     {
         //Instantiate(villager, spawnVillager.position, Quaternion.identity);
 
-        if (almacen.food > 20 && almacen.rock > 10)
+        if (almacen.food > 20 && almacen.rock > 10 && (townhall.maxPopulation - townhall.currentPopulation) >= 1)
         {
 
             WarSpawn();
@@ -68,7 +69,7 @@ public class Tavern : MonoBehaviour
     {
         //Instantiate(villager, spawnVillager.position, Quaternion.identity);
 
-        if (almacen.food > 30 && almacen.rock > 20)
+        if (almacen.food > 30 && almacen.rock > 20 && (townhall.maxPopulation - townhall.currentPopulation) >= 1)
         {
 
             ShieldWarSpawn();

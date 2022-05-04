@@ -10,6 +10,7 @@ public class Almacen : MonoBehaviour
     public int food;
 
     public Text foodT, rockT;
+    
     private void Update()
     {
         foodT.text = food.ToString();

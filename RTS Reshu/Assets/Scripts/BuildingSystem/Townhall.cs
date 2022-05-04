@@ -52,7 +52,7 @@ public class Townhall : MonoBehaviour
     {
         //Instantiate(villager, spawnVillager.position, Quaternion.identity);
 
-        if (almacen.food > 20) {
+        if (almacen.food >= 20 && (maxPopulation - currentPopulation) >= 1) {
             
             Spawn();
         }
@@ -68,6 +68,7 @@ public class Townhall : MonoBehaviour
         Instantiate(villager, spawnVillager.position, Quaternion.identity);
         almacen.food -= 20;
         currentPopulation += 1;
+        
     }
 
     IEnumerator messageDis()
