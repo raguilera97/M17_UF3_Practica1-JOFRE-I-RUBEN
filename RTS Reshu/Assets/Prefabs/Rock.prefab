@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2828870513370892259}
   - component: {fileID: 6838673544521880175}
   - component: {fileID: 449117985684539876}
+  - component: {fileID: 5372626387743245973}
   m_Layer: 8
   m_Name: Rock
   m_TagString: Resource
@@ -112,6 +113,20 @@ MonoBehaviour:
   ringSelector: {fileID: 744932647558632835}
   id: Rock
   resource: 200
+  resourceOcu: 0
+--- !u!114 &5372626387743245973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2828870513372783383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8925ac90c05c6c488fae25d7dfb2dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
 --- !u!1001 &9147842655156899391
 PrefabInstance:
   m_ObjectHideFlags: 0

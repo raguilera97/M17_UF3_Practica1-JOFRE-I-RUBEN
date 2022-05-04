@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Townhall : MonoBehaviour
+public class Townhall : MonoBehaviour, ISaveable
 {
     [SerializeField] SelectableObject ringSelector;
     [SerializeField] GameObject HUDPanel;
@@ -75,5 +76,38 @@ public class Townhall : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         errMess.SetActive(false);
+    }
+
+    [Serializable]
+    private class TownhallData
+    {
+        public float[] position = new float[3];
+        public int maxPopul;
+        public int currentPopul;
+
+    }
+
+    public object CaptureState()
+    {
+        TownhallData townhallData = new TownhallData();
+        townhallData.position[0] = transform.position.x;
+        townhallData.position[1] = transform.position.y;
+        townhallData.position[2] = transform.position.z;
+        townhallData.maxPopul = maxPopulation;
+        townhallData.currentPopul = currentPopulation;
+
+        return townhallData;
+    }
+
+    public void RestoreState(object data)
+    {
+        var townhallData = (TownhallData)data;
+
+        Vector3 position;
+        position.x = townhallData.position[0];
+        position.y = townhallData.position[1];
+        position.z = townhallData.position[2];
+        maxPopulation = townhallData.maxPopul;
+        currentPopulation = townhallData.currentPopul;
     }
 }
