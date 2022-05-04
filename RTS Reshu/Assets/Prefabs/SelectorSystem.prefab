@@ -118,10 +118,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7cb6228f5e3edf43be4fca7fa563952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  formationPos: {x: 0, y: 0, z: 0}
   unitList: []
   unitSelected: []
-  building: {fileID: 0}
+  townhall: {fileID: 0}
+  tavern: {fileID: 0}
   resource: {fileID: 0}
+  unitHUD: {fileID: 0}
+  areVillagers: 0
+  areWarriors: 0
+  formTri: 0
+  formRec: 0
+  townhallIsSelected: 0
+  tavernllIsSelected: 0
 --- !u!1 &2498011032903307460
 GameObject:
   m_ObjectHideFlags: 0

@@ -61,4 +61,19 @@ public class SoldierControler : MonoBehaviour
     {
         transform.position = agent.nextPosition;
     }
+
+    public void AttackAnimation()
+    {
+        anim.SetTrigger("Attack");
+    }
+
+    public void HurtAnimation()
+    {
+        anim.SetTrigger("Hit");
+    }
+
+    public void DeathAnimation()
+    {
+        anim.SetTrigger("Dead");
+    }
 }
