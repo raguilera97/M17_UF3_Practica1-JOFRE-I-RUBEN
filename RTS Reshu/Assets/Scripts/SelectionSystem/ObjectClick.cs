@@ -29,23 +29,32 @@ public class ObjectClick : MonoBehaviour
 
             if(Physics.Raycast(ray, out hit, Mathf.Infinity, clickable))
             {
-                if (hit.collider.gameObject.tag.Equals("Building"))
+                GameObject hitObject = hit.collider.gameObject;
+                
+                if (hitObject.tag.Equals("Building"))
                 {
-                    Selections.Instance.BuildingClick(hit.collider.gameObject.GetComponent<Townhall>());
+                    if (hitObject.name.Contains("townhall"))
+                    {
+                        Selections.Instance.TownhallClick(hit.collider.gameObject.GetComponent<Townhall>());
+                    }
+                    else
+                    {
+                        Selections.Instance.TavernClick(hit.collider.gameObject.GetComponent<Tavern>());
+                    }
                 }
-                else if (hit.collider.gameObject.tag.Equals("Resource"))
+                else if (hitObject.tag.Equals("Resource"))
                 {
-                    Selections.Instance.ResourceClick(hit.collider.gameObject.GetComponent<Resource>());
+                    Selections.Instance.ResourceClick(hitObject.GetComponent<Resource>());
                 }
                 else
                 {
                     if (Input.GetKey(KeyCode.LeftShift))
                     {
-                        Selections.Instance.ShiftClickSelect(hit.collider.gameObject.GetComponent<Unit>());
+                        Selections.Instance.ShiftClickSelect(hitObject.GetComponent<Unit>());
                     }
                     else
                     {
-                        Selections.Instance.SelectClick(hit.collider.gameObject.GetComponent<Unit>());
+                        Selections.Instance.SelectClick(hitObject.GetComponent<Unit>());
                     }
                 }
                 

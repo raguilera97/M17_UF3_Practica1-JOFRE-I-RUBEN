@@ -12,13 +12,18 @@ public class Selections : MonoBehaviour
 
     public List<Unit> unitList = new List<Unit>();
     public List<Unit> unitSelected = new List<Unit>();
-    public Townhall building;
+    public Townhall townhall;
+    public Tavern tavern;
     public Resource resource;
     public GameObject unitHUD;
     public bool areVillagers = false;
     public bool areWarriors = false;
     public bool formTri = false;
     public bool formRec = false;
+    public bool townhallIsSelected = false;
+    public bool tavernllIsSelected = false;
+
+
 
     private static Selections _instance;
     public static Selections Instance { get { return _instance; } }
@@ -93,9 +98,6 @@ public class Selections : MonoBehaviour
                 formationPos.x = hitInfo.point.x;
                 formationPos += new Vector3(0, 0, 2);
             }
-
-
-            Debug.Log(formationPos);
 
             unit.gameObject.GetComponent<NavMeshAgent>().destination = formationPos;
             formationPos += new Vector3(2, 0);
@@ -306,10 +308,18 @@ public class Selections : MonoBehaviour
             resource.Unselected();
             resource = null;
         }
-        if (building != null)
+        if (townhall != null)
         {
-            building.Unselected();
-            building = null;
+            townhallIsSelected = false;
+            townhall.Unselected();
+            townhall = null;
+        }
+
+        if(tavern != null)
+        {
+            tavernllIsSelected = false;
+            tavern.Unselected();
+            tavern = null;
         }
     }
 
@@ -351,18 +361,57 @@ public class Selections : MonoBehaviour
 
     public void DeselectBuilding()
     {
-        if(building != null)
+        if(townhall != null)
         {
-            building.Unselected();
+            townhallIsSelected = false;
+            townhall.Unselected();
+        }else if (tavern != null)
+        {
+            tavernllIsSelected = false;
+            tavern.Unselected();
         }
-        building = null;
+
+        if (townhall)
+        {
+
+        }
+        tavern = null;
+        townhall = null;
+        
         
     }
 
-    public void BuildingClick(Townhall buildingSelect)
+    public void TownhallClick(Townhall townhallSelect)
     {
-        building = buildingSelect;
-        building.Selected();
+        if(tavernllIsSelected == true)
+        {
+            tavern.Unselected();
+        }
+        
+        townhall = townhallSelect;
+        townhall.Selected();
+        townhallIsSelected = true;
+         
+        foreach (Unit unit in unitSelected)
+        {
+            unit.Unselected();
+        }
+        unitHUD.transform.GetChild(1).gameObject.SetActive(false);
+        unitHUD.transform.GetChild(2).gameObject.SetActive(false);
+        unitHUD.SetActive(false);
+        unitSelected.Clear();
+    }
+
+    public void TavernClick(Tavern tavernSelect)
+    {
+        if(townhallIsSelected == true)
+        {
+            townhall.Unselected();
+        }
+        
+        tavern = tavernSelect;
+        tavern.Selected();
+        tavernllIsSelected = true;
 
         foreach (Unit unit in unitSelected)
         {
