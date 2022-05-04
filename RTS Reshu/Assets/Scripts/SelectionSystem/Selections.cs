@@ -20,10 +20,11 @@ public class Selections : MonoBehaviour
     public bool areWarriors = false;
     public bool formTri = false;
     public bool formRec = false;
+
     public bool townhallIsSelected = false;
     public bool tavernllIsSelected = false;
 
-
+    public Unit units;
 
     private static Selections _instance;
     public static Selections Instance { get { return _instance; } }
@@ -371,14 +372,9 @@ public class Selections : MonoBehaviour
             tavern.Unselected();
         }
 
-        if (townhall)
-        {
-
-        }
         tavern = null;
         townhall = null;
-        
-        
+                
     }
 
     public void TownhallClick(Townhall townhallSelect)
@@ -404,6 +400,10 @@ public class Selections : MonoBehaviour
 
     public void TavernClick(Tavern tavernSelect)
     {
+        if(tavernllIsSelected == true)
+        {
+            tavern.Unselected();
+        }
         if(townhallIsSelected == true)
         {
             townhall.Unselected();
@@ -421,6 +421,28 @@ public class Selections : MonoBehaviour
         unitHUD.transform.GetChild(2).gameObject.SetActive(false);
         unitHUD.SetActive(false);
         unitSelected.Clear();
+    }
+
+    public void CombatClick(Unit unitTarget)
+    {
+        foreach (Unit unit in unitSelected)
+        {
+            if (unit.name.Contains("Villager"))
+            {
+                units = unitTarget;
+                units.Selected();
+
+                unit.GetComponent<iaSoldier>().OrderAttack(units);
+
+                //StartCoroutine(waitDesactive());
+
+                Deselect(unit);
+
+                break;
+            }
+
+        }
+
     }
 
     public void ResourceClick(Resource resourceSelect)

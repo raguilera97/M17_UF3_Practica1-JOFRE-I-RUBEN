@@ -262,6 +262,31 @@ Transform:
   m_Father: {fileID: 5579400120417960421}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7546177263484987248
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5572536580458366043}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.29118025, y: 0.8455934, z: 0.14509313}
+  m_Center: {x: -0.00022476978, y: 0.6689505, z: -0.000003610521}
+--- !u!114 &6718991675940704176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5572536580458366043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a044c0edcb66501499641398a3a63a7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6566834982099713115
 GameObject:
   m_ObjectHideFlags: 0
@@ -2099,14 +2124,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4825905300869100278}
   - component: {fileID: 3217188399062894712}
-  - component: {fileID: 4800468569272035744}
   - component: {fileID: 5363701705653274527}
+  - component: {fileID: 4800468569272035744}
   - component: {fileID: 3500617956649184186}
   - component: {fileID: 5134014989584469430}
   - component: {fileID: 7376197725531465688}
   - component: {fileID: 2561188663863544957}
   m_Layer: 8
-  m_Name: SwordWarrior
+  m_Name: Sword Warrior
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2148,19 +2173,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4800468569272035744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8994905510961330123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fd952daaab94b745be0a290974f4488, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lookAtTargetPosition: {x: 0, y: 0, z: 0}
 --- !u!195 &5363701705653274527
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2183,6 +2195,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 0
+--- !u!114 &4800468569272035744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8994905510961330123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd952daaab94b745be0a290974f4488, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookAtTargetPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &3500617956649184186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2209,12 +2234,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22ea1fca4c065534ead13fe8bb49c3d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   movementSpeed: 10
-  pursueDistance: 10
+  pursueDistance: 5
   attackDistance: 2
   attackCooldown: 2
-  agent: {fileID: 0}
+  attackDmg: 0
+  maxHealth: 100
+  currentHealth: 0
+  agent: {fileID: 5363701705653274527}
+  unitToAttack: {fileID: 0}
+  soldier: {fileID: 4800468569272035744}
 --- !u!136 &7376197725531465688
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2319,6 +2348,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 49f52e81766d83a49aca2c17841a1417, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21ca816de6f3abd4cbee2c0462c8a186, type: 3}
+--- !u!1 &5572536580458366043 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 21ca816de6f3abd4cbee2c0462c8a186, type: 3}
+  m_PrefabInstance: {fileID: 5572536580458332923}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5572536580457945211 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 21ca816de6f3abd4cbee2c0462c8a186, type: 3}

@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public interface iStateWarrior
 {
-    void OnEnterState(iaSoldier character);
+    iStateWarrior OnUpdate(iaSoldier war);
+    
+    void OnEnterState(iaSoldier war);
 
-    iStateWarrior OnUpdate(iaSoldier character);
-
-    void OnExitState(iaSoldier character);
+    void OnExitState(iaSoldier war);
 }

@@ -50,6 +50,7 @@ public class ObjectClick : MonoBehaviour
                 {
                     if (!hitObject.name.Contains("Enemy"))
                     {
+<<<<<<< HEAD
                         if (Input.GetKey(KeyCode.LeftShift))
                         {
                             Selections.Instance.ShiftClickSelect(hitObject.GetComponent<Unit>());
@@ -58,6 +59,14 @@ public class ObjectClick : MonoBehaviour
                         {
                             Selections.Instance.SelectClick(hitObject.GetComponent<Unit>());
                         }
+=======
+                        Selections.Instance.ShiftClickSelect(hitObject.GetComponent<Unit>());
+                    }
+                    else
+                    {
+                        Selections.Instance.SelectClick(hitObject.GetComponent<Unit>());
+                        
+>>>>>>> CombatSys
                     }
                    
                 }
