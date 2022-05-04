@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1547321606866850904}
   - component: {fileID: 1547321606885121247}
   - component: {fileID: 1547321606885121241}
+  - component: {fileID: -7460643840741952240}
   m_Layer: 8
   m_Name: Arbusto
   m_TagString: Resource
@@ -94,6 +95,19 @@ MonoBehaviour:
   id: Bush
   resource: 200
   resourceOcu: 0
+--- !u!114 &-7460643840741952240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547321606885121240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8925ac90c05c6c488fae25d7dfb2dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
 --- !u!1 &1547321606885121242
 GameObject:
   m_ObjectHideFlags: 0

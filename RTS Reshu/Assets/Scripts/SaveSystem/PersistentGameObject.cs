@@ -6,7 +6,7 @@ using UnityEngine;
 [ExecuteAlways]
 public class PersistentGameObject : MonoBehaviour
 {
-    [SerializeField] private string id = string.Empty;
+    [SerializeField] public string id = string.Empty;
 
     public string Id => id;
 

@@ -27,9 +27,6 @@ public class RuleSystem : MonoBehaviour
         conditions.Add(CheckCondition7);
         conditions.Add(CheckCondition8);
         conditions.Add(CheckCondition9);
-        conditions.Add(CheckCondition10);
-        conditions.Add(CheckCondition11);
-        conditions.Add(CheckCondition12);
 
         actions.Add(PerformAction1);
         actions.Add(PerformAction2);
@@ -40,9 +37,6 @@ public class RuleSystem : MonoBehaviour
         actions.Add(PerformAction7);
         actions.Add(PerformAction8);
         actions.Add(PerformAction9);
-        actions.Add(PerformAction10);
-        actions.Add(PerformAction11);
-        actions.Add(PerformAction12);
     }
 
     private void Start()
@@ -223,21 +217,6 @@ public class RuleSystem : MonoBehaviour
         return attack;
     }
 
-    private bool CheckCondition10()
-    {
-        return false;
-    }
-
-    private bool CheckCondition11()
-    {
-        return false;
-    }
-
-    private bool CheckCondition12()
-    {
-        return false;
-    }
-
     private void PerformAction1()
     {
         Debug.Log("Buscar recursos");
@@ -247,36 +226,35 @@ public class RuleSystem : MonoBehaviour
             unit.civilOcupat = true;
             if (unit.name.Contains("Villager"))
             {
-                foreach (Resource resource in controladorIA.recursosMapa)
-                {
+                Resource resource = GetClosestResource(unit);
+                //foreach (Resource resource in controladorIA.recursosMapa)
+                //{
                     if (controladorIA.currentCivils < 4)
                     {
-                        if (controladorIA.ajuntamentRecursos.food < controladorIA.maxFood && resource.id.Equals("Bush"))
+
+                        if (resource.resourceOcu == false && unit.civilOcupat == true)
                         {
-
-                            if (resource.resourceOcu == false && unit.civilOcupat == true)
+                            if (unit.GetComponent<iaVillager>().resourceSelect == null)
                             {
-                                if (unit.GetComponent<iaVillager>().resourceSelect == null)
+                                if (resource == null)
                                 {
-                                    if (resource == null)
-                                    {
-                                        resource.resourceOcu = false;
-                                        unit.GetComponent<iaVillager>().OrderIdle();
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        resource.resourceOcu = true;
-                                        unit.GetComponent<iaVillager>().OrderGathering(resource);
-                                        unit.civilOcupat = false;
-                                        break;
-                                    }
-
+                                    resource.resourceOcu = false;
+                                    unit.GetComponent<iaVillager>().OrderIdle();
+                                    unit.civilOcupat = false;
+                                    break;
+                                }
+                                else
+                                {
+                                    resource.resourceOcu = true;
+                                    unit.GetComponent<iaVillager>().OrderGathering(resource);
+                                    unit.civilOcupat = false;
+                                    break;
                                 }
 
                             }
 
                         }
+
                     }
                     else
                     {
@@ -291,6 +269,7 @@ public class RuleSystem : MonoBehaviour
                                     {
                                         resource.resourceOcu = false;
                                         unit.GetComponent<iaVillager>().OrderIdle();
+                                        unit.civilOcupat = false;
                                         break;
                                     }
                                     else
@@ -308,7 +287,6 @@ public class RuleSystem : MonoBehaviour
                         }
                         else if (controladorIA.ajuntamentRecursos.rock < controladorIA.maxStone && resource.id.Equals("Rock"))
                         {
-                            //controladorIA.civilOcu = true;
                             if (resource.resourceOcu == false && unit.civilOcupat == true)
                             {
                                 if (unit.GetComponent<iaVillager>().resourceSelect == null)
@@ -318,6 +296,7 @@ public class RuleSystem : MonoBehaviour
                                     {
                                         resource.resourceOcu = false;
                                         unit.GetComponent<iaVillager>().OrderIdle();
+                                        unit.civilOcupat = false;
                                         break;
                                     }
                                     else
@@ -333,7 +312,7 @@ public class RuleSystem : MonoBehaviour
                         }
                     }
 
-                }
+                //}
             }
             if(controladorIA.timeGameSimulator.currentTime < 30f)
             {
@@ -384,6 +363,80 @@ public class RuleSystem : MonoBehaviour
         yield return new WaitForSeconds(5f);
     }
 
+    // Buscar el recurs més proper
+    
+    public Resource GetClosestResource(Unit unitSelect)
+    {
+        Resource resourceSelect = null;
+        float antPos = 0;
+        foreach (Resource resource in controladorIA.recursosMapa)
+        {
+            
+            if (resource != null)
+            {
+                if(controladorIA.currentCivils < 4)
+                {
+                    if (controladorIA.ajuntamentRecursos.food < controladorIA.maxFood && resource.id.Equals("Bush"))
+                    {
+
+                        if (antPos == 0)
+                        {
+                            antPos = Vector3.Distance(resource.transform.position, unitSelect.transform.position);
+                            resourceSelect = resource;
+                            //Debug.Log("Primera posició: " + antPos);
+                        }
+                        else if (antPos > Vector3.Distance(resource.transform.position, unitSelect.transform.position))
+                        {
+                            antPos = Vector3.Distance(resource.transform.position, unitSelect.transform.position);
+                            resourceSelect = resource;
+                            //Debug.Log("Darreres posicions: " + antPos + " " + resourceSelect.name);
+                        }
+
+                    }
+                }
+                else
+                {
+                    if (controladorIA.ajuntamentRecursos.food < controladorIA.maxFood && resource.id.Equals("Bush"))
+                    {
+
+                        if (antPos == 0)
+                        {
+                            antPos = Vector3.Distance(resource.transform.position, unitSelect.transform.position);
+                            resourceSelect = resource;
+                            //Debug.Log("Primera posició: " + antPos);
+                        }
+                        else if (antPos > Vector3.Distance(resource.transform.position, unitSelect.transform.position))
+                        {
+                            antPos = Vector3.Distance(resource.transform.position, unitSelect.transform.position);
+                            resourceSelect = resource;
+                            //Debug.Log("Darreres posicions: " + antPos + " " + resourceSelect.name);
+                        }
+
+                    }
+                    else if (controladorIA.ajuntamentRecursos.rock < controladorIA.maxStone && resource.id.Equals("Rock"))
+                    {
+                        if (antPos == 0)
+                        {
+                            antPos = Vector3.Distance(resource.transform.position, unitSelect.transform.position);
+                            resourceSelect = resource;
+                            //Debug.Log("Primera posició: " + antPos);
+                        }
+                        else if (antPos > Vector3.Distance(resource.transform.position, unitSelect.transform.position))
+                        {
+                            antPos = Vector3.Distance(resource.transform.position, unitSelect.transform.position);
+                            resourceSelect = resource;
+                            //Debug.Log("Darreres posicions: " + antPos + " " + resourceSelect.name);
+                        }
+                    }
+                }
+                
+            }
+            
+        }
+        Debug.Log("Recurs més aprop: " + resourceSelect);
+        return resourceSelect;
+    }
+    
     private void PerformAction2()
     {
         Debug.Log("Spawned civil");
@@ -391,7 +444,7 @@ public class RuleSystem : MonoBehaviour
         {
             controladorIA.ajuntament.GetComponent<Townhall>().SpawnVillager();
 
-            controladorIA.ajuntamentRecursos.food -= 25;
+            controladorIA.ajuntamentRecursos.food -= 0;
             controladorIA.currentCivils += 1;
             controladorIA.food = controladorIA.ajuntamentRecursos.food;
         }
@@ -458,21 +511,6 @@ public class RuleSystem : MonoBehaviour
     }
 
     private void PerformAction9()
-    {
-
-    }
-
-    private void PerformAction10()
-    {
-
-    }
-
-    private void PerformAction11()
-    {
-
-    }
-
-    private void PerformAction12()
     {
 
     }

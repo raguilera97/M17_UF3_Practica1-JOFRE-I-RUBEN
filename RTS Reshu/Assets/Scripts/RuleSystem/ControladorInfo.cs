@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,7 +42,6 @@ public class ControladorInfo : MonoBehaviour
     public Selections unitats;
     public float civilss = 0;
     public List<Unit> civils = new List<Unit>();
-    public bool civilOcu = false;
 
     // Components de elements de recursos en el mapa
     public List<Resource> recursosMapa = new List<Resource>();
@@ -76,10 +76,12 @@ public class ControladorInfo : MonoBehaviour
         soldiersSpawned.Add(true);
         UpdateCivils();
         UpdateSoldiers();
+        AssignGUIDUnits();
+        AssignGUIDResource();
 
         civils = unitats.unitList;
-        //civils[0].GetComponent<iaVillager>().OrderGathering(roca);
-        //Debug.Log("Unitats desplegades" + civils.Count);
+        
+        ajuntament.GetComponent<PersistentGameObject>().id = Guid.NewGuid().ToString();
     }
 
     private void Update()
@@ -112,6 +114,25 @@ public class ControladorInfo : MonoBehaviour
                 currentSoldiers++;
             }
         }
+    }
+
+    private void AssignGUIDUnits()
+    {
+        foreach (Unit unit in civils)
+        {
+            Debug.Log("Unitat: " + unit.name);
+            unit.GetComponent<PersistentGameObject>().id = Guid.NewGuid().ToString();
+        }
+
+    }
+
+    private void AssignGUIDResource()
+    {
+        foreach (Resource resource in recursosMapa)
+        {
+            resource.GetComponent<PersistentGameObject>().id = Guid.NewGuid().ToString();
+        }
+        
     }
 
 }
