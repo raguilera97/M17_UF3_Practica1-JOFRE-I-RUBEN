@@ -388,14 +388,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1755184212631720814, guid: a2bec36aab86e354fa77b221eee4cb51, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1755184212631720814, guid: a2bec36aab86e354fa77b221eee4cb51, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1755184212631720815, guid: a2bec36aab86e354fa77b221eee4cb51, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -687,6 +679,10 @@ PrefabInstance:
     - target: {fileID: 6753256966644100285, guid: 1c982fc2af9797b42b8d6dfc0ef859af, type: 3}
       propertyPath: m_Name
       value: townhall
+      objectReference: {fileID: 0}
+    - target: {fileID: 8519185169590369514, guid: 1c982fc2af9797b42b8d6dfc0ef859af, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c982fc2af9797b42b8d6dfc0ef859af, type: 3}

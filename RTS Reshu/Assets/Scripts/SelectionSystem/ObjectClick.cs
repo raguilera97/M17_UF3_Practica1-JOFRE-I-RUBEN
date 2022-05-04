@@ -35,11 +35,11 @@ public class ObjectClick : MonoBehaviour
                 {
                     if (hitObject.name.Contains(""))
                     {
-                        Selections.Instance.BuildingClick(hit.collider.gameObject.GetComponent<Townhall>());
+                        Selections.Instance.TownhallClick(hit.collider.gameObject.GetComponent<Townhall>());
                     }
                     else
                     {
-                        
+                        Selections.Instance.TavernClick(hit.collider.gameObject.GetComponent<Tavern>());
                     }
                 }
                 else if (hitObject.tag.Equals("Resource"))
