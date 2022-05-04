@@ -1937,6 +1937,7 @@ GameObject:
   - component: {fileID: 6224283250937474517}
   - component: {fileID: 6335868294443679189}
   - component: {fileID: 8711666501186727295}
+  - component: {fileID: 3372467509956774109}
   m_Layer: 8
   m_Name: ShieldWarrior
   m_TagString: Untagged
@@ -2028,6 +2029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ringSelector: {fileID: 1052608090125091519}
+  civilOcupat: 0
 --- !u!136 &8711666501186727295
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2042,6 +2044,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &3372467509956774109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5363434506995638573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8925ac90c05c6c488fae25d7dfb2dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
 --- !u!1 &5363434506995638575
 GameObject:
   m_ObjectHideFlags: 0

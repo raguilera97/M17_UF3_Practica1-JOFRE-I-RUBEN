@@ -2104,6 +2104,7 @@ GameObject:
   - component: {fileID: 3500617956649184186}
   - component: {fileID: 5134014989584469430}
   - component: {fileID: 7376197725531465688}
+  - component: {fileID: 2561188663863544957}
   m_Layer: 8
   m_Name: SwordWarrior
   m_TagString: Untagged
@@ -2228,6 +2229,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &2561188663863544957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8994905510961330123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8925ac90c05c6c488fae25d7dfb2dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
 --- !u!1001 &5572536580458332923
 PrefabInstance:
   m_ObjectHideFlags: 0
