@@ -524,7 +524,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3699977470395865122}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 50, y: 2.4, z: 63}
+  m_LocalPosition: {x: 50, y: 2.4, z: 99}
   m_LocalScale: {x: 4.5, y: 4.5, z: 4.5}
   m_Children:
   - {fileID: 5187539570985570143}
@@ -611,6 +611,7 @@ MonoBehaviour:
   HUDPanel: {fileID: 3699977469217794610}
   spawnVillager: {fileID: 3699977469963746130}
   villager: {fileID: 6217965687234326985, guid: c3a3ff7a78606e949ace95a07f8737a9, type: 3}
+  errMess: {fileID: 0}
 --- !u!1001 &3699977470472705252
 PrefabInstance:
   m_ObjectHideFlags: 0

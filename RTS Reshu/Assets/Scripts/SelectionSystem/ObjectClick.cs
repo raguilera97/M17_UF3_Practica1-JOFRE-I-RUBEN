@@ -33,7 +33,7 @@ public class ObjectClick : MonoBehaviour
                 
                 if (hitObject.tag.Equals("Building"))
                 {
-                    if (hitObject.name.Contains("townhall"))
+                    if (hitObject.name.Contains(""))
                     {
                         Selections.Instance.BuildingClick(hit.collider.gameObject.GetComponent<Townhall>());
                     }
