@@ -31,7 +31,7 @@ public class ObjectClick : MonoBehaviour
             {
                 GameObject hitObject = hit.collider.gameObject;
                 
-                if (hitObject.tag.Equals("Building"))
+                if (hitObject.tag.Equals("Building") && !hitObject.name.Contains("Enemy"))
                 {
                     if (hitObject.name.Contains("townhall"))
                     {
@@ -48,14 +48,18 @@ public class ObjectClick : MonoBehaviour
                 }
                 else
                 {
-                    if (Input.GetKey(KeyCode.LeftShift))
+                    if (!hitObject.name.Contains("Enemy"))
                     {
-                        Selections.Instance.ShiftClickSelect(hitObject.GetComponent<Unit>());
+                        if (Input.GetKey(KeyCode.LeftShift))
+                        {
+                            Selections.Instance.ShiftClickSelect(hitObject.GetComponent<Unit>());
+                        }
+                        else
+                        {
+                            Selections.Instance.SelectClick(hitObject.GetComponent<Unit>());
+                        }
                     }
-                    else
-                    {
-                        Selections.Instance.SelectClick(hitObject.GetComponent<Unit>());
-                    }
+                   
                 }
                 
             }

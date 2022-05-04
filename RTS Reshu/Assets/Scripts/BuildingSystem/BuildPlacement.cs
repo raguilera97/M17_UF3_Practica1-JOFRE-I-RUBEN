@@ -34,7 +34,7 @@ public class BuildPlacement : MonoBehaviour
 
     void Start()
     {
-        almacen = FindObjectOfType<Almacen>();
+        almacen = townhall.gameObject.GetComponent<Almacen>();
     }
 
     void Update()
@@ -53,7 +53,7 @@ public class BuildPlacement : MonoBehaviour
         {
             ObjToPlace = housePrefab;
             ObjToMove = casaToMove;
-            rend = GameObject.Find("Zuelo").GetComponent<Renderer>();
+            rend = GameObject.Find("ZonaConstruccsao").GetComponent<Renderer>();
             isBuilding = true;
             grid.SetActive(true);
             casaToMove.SetActive(true);
@@ -74,7 +74,7 @@ public class BuildPlacement : MonoBehaviour
             ObjToPlace = tavernPrefab;
             ObjToMove = tavernToMove;
 
-            rend = GameObject.Find("Zuelo").GetComponent<Renderer>();
+            rend = GameObject.Find("ZonaConstruccsao").GetComponent<Renderer>();
             isBuilding = true;
             grid.SetActive(true);
             tavernToMove.SetActive(true);

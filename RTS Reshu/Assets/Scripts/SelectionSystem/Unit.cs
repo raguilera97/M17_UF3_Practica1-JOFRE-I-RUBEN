@@ -10,12 +10,19 @@ public class Unit : MonoBehaviour
 
     private void Start()
     {
-        Selections.Instance.unitList.Add(this.gameObject.GetComponent<Unit>());
+        if (!this.gameObject.name.Contains("Enemy"))
+        {
+            Selections.Instance.unitList.Add(this.gameObject.GetComponent<Unit>());
+        }
     }
 
     private void OnDestroy()
     {
-        Selections.Instance.unitList.Remove(this.gameObject.GetComponent<Unit>());
+        if (!this.gameObject.name.Contains("Enemy"))
+        {
+           Selections.Instance.unitList.Remove(this.gameObject.GetComponent<Unit>());
+        }
+       
     }
 
     public void Selected()

@@ -8,8 +8,9 @@ public class iaVillager : MonoBehaviour
 {
     iState currentState = new StateIdle();
 
-    public Almacen almacen;
+    public Almacen[] almacenes;
     public NavMeshAgent agent;
+    public Almacen almacen;
     public Resource resourceSelect;
     public VillagerController villager;
 
@@ -18,7 +19,20 @@ public class iaVillager : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         villager = GetComponent<VillagerController>();
-        almacen = FindObjectOfType<Almacen>();
+        almacenes = FindObjectsOfType<Almacen>();
+        for(int i = 0; almacenes.Length > i; i++)
+        {
+            if (almacenes[i].gameObject.name.Contains("Enemy") && villager.name.Contains("Enemy"))
+            {
+                almacen = almacenes[i].GetComponent<Almacen>();
+                break;
+            }
+            else if (almacenes[i].gameObject.name.Contains("Ally") && villager.name.Contains("Ally"))
+            {
+                almacen = almacenes[i].GetComponent<Almacen>();
+                break;
+            }
+        }
     }
 
     private void Update()
