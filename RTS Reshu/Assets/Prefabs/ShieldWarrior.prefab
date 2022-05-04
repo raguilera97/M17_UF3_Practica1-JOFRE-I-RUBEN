@@ -1702,6 +1702,19 @@ Transform:
   m_Father: {fileID: 213684244054412760}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5981771979877413303
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5363434506257216501}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.29117984, y: 0.9106017, z: 0.14509305}
+  m_Center: {x: -0.00022516561, y: 0.63645256, z: 0.00000046777575}
 --- !u!1 &5363434506995638417
 GameObject:
   m_ObjectHideFlags: 0
@@ -1933,10 +1946,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5363434506995612877}
   - component: {fileID: 5363434506988376913}
-  - component: {fileID: 8771808516190606979}
   - component: {fileID: 6224283250937474517}
   - component: {fileID: 6335868294443679189}
   - component: {fileID: 8711666501186727295}
+  - component: {fileID: 8771808516190606979}
+  - component: {fileID: 6032641671212863073}
   m_Layer: 8
   m_Name: ShieldWarrior
   m_TagString: Untagged
@@ -1980,19 +1994,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8771808516190606979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5363434506995638573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fd952daaab94b745be0a290974f4488, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lookAtTargetPosition: {x: 0, y: 0, z: 0}
 --- !u!195 &6224283250937474517
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2028,6 +2029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ringSelector: {fileID: 1052608090125091519}
+  civilOcupat: 0
 --- !u!136 &8711666501186727295
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2042,6 +2044,41 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &8771808516190606979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5363434506995638573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd952daaab94b745be0a290974f4488, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookAtTargetPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &6032641671212863073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5363434506995638573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22ea1fca4c065534ead13fe8bb49c3d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 10
+  pursueDistance: 10
+  attackDistance: 2
+  attackCooldown: 1
+  attackDmg: 0
+  maxHealth: 100
+  currentHealth: 0
+  agent: {fileID: 0}
+  unitToAttack: {fileID: 0}
+  soldier: {fileID: 0}
 --- !u!1 &5363434506995638575
 GameObject:
   m_ObjectHideFlags: 0
@@ -2289,6 +2326,11 @@ PrefabInstance:
 --- !u!4 &5363434506257641429 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 21ca816de6f3abd4cbee2c0462c8a186, type: 3}
+  m_PrefabInstance: {fileID: 5363434506257249621}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5363434506257216501 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 21ca816de6f3abd4cbee2c0462c8a186, type: 3}
   m_PrefabInstance: {fileID: 5363434506257249621}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5363434506619585975

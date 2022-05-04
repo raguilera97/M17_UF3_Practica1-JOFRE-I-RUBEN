@@ -55,6 +55,7 @@ public class ObjectClick : MonoBehaviour
                     else
                     {
                         Selections.Instance.SelectClick(hitObject.GetComponent<Unit>());
+                        
                     }
                 }
                 

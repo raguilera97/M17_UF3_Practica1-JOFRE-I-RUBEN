@@ -4,32 +4,27 @@ using UnityEngine;
 
 public class PursueSoldierState : iStateWarrior
 {
-    public void OnEnterState(iaSoldier character)
+    public void OnEnterState(iaSoldier war)
     {
-        
+        war.agent.SetDestination(war.unitToAttack.transform.position);
     }
 
-    public void OnExitState(iaSoldier character)
+    public iStateWarrior OnUpdate(iaSoldier war)
     {
-        
-    }
+        float distanceToTarget = Vector3.Distance(war.unitToAttack.transform.position, war.transform.position);
 
-    public iStateWarrior OnUpdate(iaSoldier character)
-    {
-        float distanceToPlayer = Vector3.Distance(character.target.position, character.transform.position);
-
-        if (distanceToPlayer < character.attackDistance)
+        if (distanceToTarget < war.attackDistance)
         {
             return new AttackSoldierState();
         }
 
-        if (distanceToPlayer > character.pursueDistance)
-        {
-            return new IdleSoldierState();
-        }
-
-        character.agent.SetDestination(character.target.position);
+        war.agent.SetDestination(war.unitToAttack.transform.position);
 
         return null;
+    }
+
+    public void OnExitState(iaSoldier character)
+    {
+
     }
 }

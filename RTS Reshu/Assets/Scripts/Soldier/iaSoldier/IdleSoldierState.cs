@@ -4,25 +4,31 @@ using UnityEngine;
 
 public class IdleSoldierState : iStateWarrior
 {
-    public void OnEnterState(iaSoldier character)
+    private float range = 20;
+
+    public void OnEnterState(iaSoldier war)
     {
         
     }
 
-    public void OnExitState(iaSoldier character)
+   public iStateWarrior OnUpdate(iaSoldier war)
     {
-        
-    }
-
-   public iStateWarrior OnUpdate(iaSoldier character)
-    {
-        //float distanceToPlayer = Vector3.Distance(character.target.position, character.transform.position);
-
-        //if (distanceToPlayer < character.pursueDistance)
-        //{
-         //   return new PursueSoldierState();
-        //}
+        /*Collider[] enemyArray = Physics.OverlapSphere(war.transform.position, range);
+        foreach(Collider collider in enemyArray)
+        {
+            if(collider.TryGetComponent<Unit>(out Unit unit))
+            {
+                war.unitToAttack.transform.position = unit.transform.position;
+                return new PursueSoldierState();
+            }
+        }*/
 
         return null;
     }
+
+    public void OnExitState(iaSoldier war)
+    {
+        
+    }
+
 }
