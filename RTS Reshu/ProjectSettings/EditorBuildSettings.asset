@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/StartMenuGame.unity
+    guid: f9820eb064dca7a4aa3fc45635755a74
+  - enabled: 1
+    path: Assets/Scenes/No se toca hasta el final.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Jofre scena.unity
+    guid: 7168989675e508c49a4b8e80f7540adc
+  - enabled: 1
+    path: Assets/Scenes/Marc Scene.unity
+    guid: 016b06277219dec4ea684c21ed63e195
+  - enabled: 1
+    path: Assets/Scenes/Ruben Scene.unity
+    guid: 247d61295d44d054788a79b97ffe0fc2
   m_configObjects: {}
