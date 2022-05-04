@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 6cbe21b9d01b80c4b97dd70d8df6ff5a, type: 2}
+--- !u!114 &97639296 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7509878870083722249, guid: a2bec36aab86e354fa77b221eee4cb51, type: 3}
+  m_PrefabInstance: {fileID: 589196140}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e09bf1593d82b7342b04f027ba8faaae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &124394020 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 22213885081612242, guid: 2ab4936d0916951409619b49b43e6c52, type: 3}
@@ -445,6 +456,10 @@ PrefabInstance:
       propertyPath: almacen
       value: 
       objectReference: {fileID: 1271624540}
+    - target: {fileID: 7509878870083722249, guid: a2bec36aab86e354fa77b221eee4cb51, type: 3}
+      propertyPath: shieldWarrior
+      value: 
+      objectReference: {fileID: 5363434506995638573, guid: 7ca293648a82bc44c8b8937acdd8ada6, type: 3}
     - target: {fileID: 7570961709972585382, guid: a2bec36aab86e354fa77b221eee4cb51, type: 3}
       propertyPath: m_Name
       value: 'SpawnPoint '
@@ -803,6 +818,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2498011032664445579, guid: 35c386e02f362c746a509e55dfd110bb, type: 3}
+      propertyPath: tavern
+      value: 
+      objectReference: {fileID: 97639296}
     - target: {fileID: 2498011032664445579, guid: 35c386e02f362c746a509e55dfd110bb, type: 3}
       propertyPath: unitHUD
       value: 
