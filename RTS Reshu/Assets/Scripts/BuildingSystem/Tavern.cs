@@ -8,8 +8,9 @@ public class Tavern : MonoBehaviour
     [SerializeField] GameObject HUDPanel;
     [SerializeField] Transform spawnWarrior;
     [SerializeField] GameObject warrior;
+    [SerializeField] GameObject shieldWarrior;
 
-    Almacen almacen;
+    [SerializeField] Almacen almacen;
 
     // mensaje de error de buildingHUD (dentro del townhall)
     public GameObject errMess;
@@ -58,6 +59,31 @@ public class Tavern : MonoBehaviour
 
         Instantiate(warrior, spawnWarrior.position, Quaternion.identity);
         almacen.food -= 20;
+        almacen.rock -= 10;
+    }
+
+    public void ShieldSpawnWarrior()
+    {
+        //Instantiate(villager, spawnVillager.position, Quaternion.identity);
+
+        if (almacen.food > 30 && almacen.rock > 20)
+        {
+
+            ShieldWarSpawn();
+        }
+        else
+        {
+            errMess.SetActive(true);
+            StartCoroutine("messageDis");
+        }
+    }
+
+    public void ShieldWarSpawn()
+    {
+
+        Instantiate(shieldWarrior, spawnWarrior.position, Quaternion.identity);
+        almacen.food -= 30;
+        almacen.rock -= 20;
     }
 
     IEnumerator messageDis()
