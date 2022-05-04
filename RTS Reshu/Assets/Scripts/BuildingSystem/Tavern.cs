@@ -9,7 +9,7 @@ public class Tavern : MonoBehaviour
     [SerializeField] Transform spawnWarrior;
     [SerializeField] GameObject warrior;
 
-    Almacen almacen;
+    [SerializeField] Almacen almacen;
 
     // mensaje de error de buildingHUD (dentro del townhall)
     public GameObject errMess;
