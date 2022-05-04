@@ -13,6 +13,7 @@ public class Selections : MonoBehaviour
     public List<Unit> unitList = new List<Unit>();
     public List<Unit> unitSelected = new List<Unit>();
     public Townhall townhall;
+    public Tavern tavern;
     public Resource resource;
     public GameObject unitHUD;
     public bool areVillagers = false;
@@ -308,6 +309,12 @@ public class Selections : MonoBehaviour
             townhall.Unselected();
             townhall = null;
         }
+
+        if(tavern != null)
+        {
+            tavern.Unselected();
+            tavern = null;
+        }
     }
 
     public void Deselect(Unit unit)
@@ -351,16 +358,35 @@ public class Selections : MonoBehaviour
         if(townhall != null)
         {
             townhall.Unselected();
+        }else if (tavern != null)
+        {
+            tavern.Unselected();
         }
+        tavern = null;
         townhall = null;
         
         
     }
 
-    public void BuildingClick(Townhall townhallSelect)
+    public void TownhallClick(Townhall townhallSelect)
     {
         townhall = townhallSelect;
         townhall.Selected();
+         
+        foreach (Unit unit in unitSelected)
+        {
+            unit.Unselected();
+        }
+        unitHUD.transform.GetChild(1).gameObject.SetActive(false);
+        unitHUD.transform.GetChild(2).gameObject.SetActive(false);
+        unitHUD.SetActive(false);
+        unitSelected.Clear();
+    }
+
+    public void TavernClick(Tavern tavernSelect)
+    {
+        tavern = tavernSelect;
+        tavern.Selected();
 
         foreach (Unit unit in unitSelected)
         {
