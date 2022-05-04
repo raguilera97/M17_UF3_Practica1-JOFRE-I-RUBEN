@@ -20,6 +20,10 @@ public class Selections : MonoBehaviour
     public bool areWarriors = false;
     public bool formTri = false;
     public bool formRec = false;
+    public bool townhallIsSelected = false;
+    public bool tavernllIsSelected = false;
+
+
 
     private static Selections _instance;
     public static Selections Instance { get { return _instance; } }
@@ -306,12 +310,14 @@ public class Selections : MonoBehaviour
         }
         if (townhall != null)
         {
+            townhallIsSelected = false;
             townhall.Unselected();
             townhall = null;
         }
 
         if(tavern != null)
         {
+            tavernllIsSelected = false;
             tavern.Unselected();
             tavern = null;
         }
@@ -357,10 +363,17 @@ public class Selections : MonoBehaviour
     {
         if(townhall != null)
         {
+            townhallIsSelected = false;
             townhall.Unselected();
         }else if (tavern != null)
         {
+            tavernllIsSelected = false;
             tavern.Unselected();
+        }
+
+        if (townhall)
+        {
+
         }
         tavern = null;
         townhall = null;
@@ -370,8 +383,14 @@ public class Selections : MonoBehaviour
 
     public void TownhallClick(Townhall townhallSelect)
     {
+        if(tavernllIsSelected == true)
+        {
+            tavern.Unselected();
+        }
+        
         townhall = townhallSelect;
         townhall.Selected();
+        townhallIsSelected = true;
          
         foreach (Unit unit in unitSelected)
         {
@@ -385,8 +404,14 @@ public class Selections : MonoBehaviour
 
     public void TavernClick(Tavern tavernSelect)
     {
+        if(townhallIsSelected == true)
+        {
+            townhall.Unselected();
+        }
+        
         tavern = tavernSelect;
         tavern.Selected();
+        tavernllIsSelected = true;
 
         foreach (Unit unit in unitSelected)
         {

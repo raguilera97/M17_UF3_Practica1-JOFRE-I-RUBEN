@@ -392,6 +392,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4487212089477007135, guid: a2bec36aab86e354fa77b221eee4cb51, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571521552379098023, guid: a2bec36aab86e354fa77b221eee4cb51, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5144428018452704223, guid: a2bec36aab86e354fa77b221eee4cb51, type: 3}
       propertyPath: m_Name
       value: tavern
@@ -455,6 +463,18 @@ PrefabInstance:
     - target: {fileID: 7570961709972585382, guid: a2bec36aab86e354fa77b221eee4cb51, type: 3}
       propertyPath: m_Name
       value: 'SpawnPoint '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7995298246295219607, guid: a2bec36aab86e354fa77b221eee4cb51, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7995298246295219607, guid: a2bec36aab86e354fa77b221eee4cb51, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7995298246295219607, guid: a2bec36aab86e354fa77b221eee4cb51, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2bec36aab86e354fa77b221eee4cb51, type: 3}
@@ -822,6 +842,10 @@ PrefabInstance:
       propertyPath: unitHUD
       value: 
       objectReference: {fileID: 1418980139}
+    - target: {fileID: 2498011032664445579, guid: 35c386e02f362c746a509e55dfd110bb, type: 3}
+      propertyPath: townhall
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3754600001400855793, guid: 35c386e02f362c746a509e55dfd110bb, type: 3}
       propertyPath: m_RootOrder
       value: 6
