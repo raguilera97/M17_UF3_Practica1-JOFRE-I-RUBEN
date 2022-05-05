@@ -15,6 +15,7 @@ public class RuleSystem : MonoBehaviour
     List<PerformAction> actions = new List<PerformAction>();
 
     List<Unit> civils;
+    List<Unit> civilsAlly;
 
     private void Awake()
     {
@@ -47,7 +48,8 @@ public class RuleSystem : MonoBehaviour
         float ironNow = controladorIA.iron;
         float foodNow = controladorIA.food;
         float civilsNow = controladorIA.currentCivils;
-        civils = controladorIA.unitats.unitList;
+        civils = controladorIA.unitats.enemyUnitList;
+        civilsAlly = controladorIA.unitats.unitList;
         
         Debug.Log("Unitats desplegades" + civils.Count);
         Debug.Log("Vida Base: " + healthNow);
@@ -178,7 +180,7 @@ public class RuleSystem : MonoBehaviour
         float percent = UnityEngine.Random.Range(0.0f, 1.0f);
         //Debug.Log(percent);
 
-        if (controladorIA.healthBase >= 500 && controladorIA.currentCivilsPlayer > 8 && percent < 0.1f && controladorIA.currentSoldiers > 10)
+        if (/*controladorIA.healthBase >= 500 && controladorIA.currentCivilsPlayer > 8 &&*/ percent < 0.1f && controladorIA.currentSoldiers > 3)
         {
             
             //Debug.Log("Entra");
@@ -224,7 +226,7 @@ public class RuleSystem : MonoBehaviour
         foreach (Unit unit in civils)
         {
             unit.civilOcupat = true;
-            if (unit.name.Contains("Villager"))
+            if (unit.name.Contains("Villager Enemy"))
             {
                 Resource resource = GetClosestResource(unit);
                 //foreach (Resource resource in controladorIA.recursosMapa)
@@ -503,6 +505,20 @@ public class RuleSystem : MonoBehaviour
     private void PerformAction7()
     {
         Debug.Log("Atacar Base de Player");
+        foreach (Unit unit in civils)
+        {
+            foreach (Unit unitAlly in civilsAlly) {
+                unit.civilOcupat = true;
+                if (unit.name.Contains("SwordWarrior Enemy") || unit.name.Contains("ShieldWarrior Enemy"))
+                {
+                    if (unit.civilOcupat == true)
+                    {
+                        unit.GetComponent<iaSoldier>().OrderAttack(unitAlly);
+                    }
+                }
+            }
+        }
+        
     }
 
     private void PerformAction8()
