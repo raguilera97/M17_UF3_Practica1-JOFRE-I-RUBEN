@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8320089351791026062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8320089351791026060}
+  - component: {fileID: 1364243046114025586}
+  m_Layer: 0
+  m_Name: ControladorIA
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8320089351791026060
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8320089351791026062}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 56.791267, y: -29.611286, z: 44.93634}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1364243046114025586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8320089351791026062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 400517daae8a79f48bf8877a96be3b70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBase: 500
+  wood: 100
+  food: 0
+  stone: 0
+  iron: 50
+  maxHealthBase: 1000
+  maxWood: 500
+  maxStone: 500
+  maxIron: 250
+  maxFood: 200
+  currentCivils: 0
+  maxCivils: 20
+  currentSoldiers: 0
+  maxSoldiers: 40
+  currentCivilsPlayer: 10
+  unitats: {fileID: 0}
+  civilss: 0
+  civils: []
+  recursosMapa: []
+  ajuntament: {fileID: 0}
+  ajuntamentAlly: {fileID: 0}
+  ajuntamentRecursos: {fileID: 0}
+  tavernEnemy: {fileID: 0}
+  timeGameSimulator: {fileID: 0}

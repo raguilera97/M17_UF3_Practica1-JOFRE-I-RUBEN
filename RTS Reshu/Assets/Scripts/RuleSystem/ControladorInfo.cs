@@ -42,15 +42,17 @@ public class ControladorInfo : MonoBehaviour
     public Selections unitats;
     public float civilss = 0;
     public List<Unit> civils = new List<Unit>();
+    public List<Unit> civilsEnemy = new List<Unit>();
 
     // Punts d'atac
-    public Transform puntAttack;
+    //public Transform puntAttack;
 
     // Components de elements de recursos en el mapa
     public List<Resource> recursosMapa = new List<Resource>();
 
     // Component del ajuntament i Tavern
     public Townhall ajuntament;
+    public Townhall ajuntamentAlly;
     public Almacen ajuntamentRecursos;
     public Tavern tavernEnemy;
 
@@ -78,14 +80,18 @@ public class ControladorInfo : MonoBehaviour
         soldiersSpawned.Add(false);
         soldiersSpawned.Add(false);
         soldiersSpawned.Add(true);
+        
+        civils = unitats.unitList;
+        civilsEnemy = unitats.enemyUnitList;
+        
         UpdateCivils();
         UpdateSoldiers();
         AssignGUIDUnits();
         AssignGUIDResource();
+        AssignGUIDUnitsEnemy();
 
-        civils = unitats.enemyUnitList;
-        
         ajuntament.GetComponent<PersistentGameObject>().id = Guid.NewGuid().ToString();
+        ajuntamentAlly.GetComponent<PersistentGameObject>().id = Guid.NewGuid().ToString();
     }
 
     private void Update()
@@ -124,7 +130,15 @@ public class ControladorInfo : MonoBehaviour
     {
         foreach (Unit unit in civils)
         {
-            Debug.Log("Unitat: " + unit.name);
+            unit.GetComponent<PersistentGameObject>().id = Guid.NewGuid().ToString();
+        }
+
+    }
+
+    private void AssignGUIDUnitsEnemy()
+    {
+        foreach (Unit unit in civilsEnemy)
+        {
             unit.GetComponent<PersistentGameObject>().id = Guid.NewGuid().ToString();
         }
 
