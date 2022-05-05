@@ -85,7 +85,7 @@ public class ControladorInfo : MonoBehaviour
 
         civils = unitats.enemyUnitList;
         
-        ajuntament.GetComponent<PersistentGameObject>().id = Guid.NewGuid().ToString();
+        //ajuntament.GetComponent<PersistentGameObject>().id = Guid.NewGuid().ToString();
     }
 
     private void Update()

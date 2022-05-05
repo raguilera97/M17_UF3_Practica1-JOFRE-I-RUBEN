@@ -642,6 +642,19 @@ MonoBehaviour:
   currentPopulation: 2
   tCurrentPop: {fileID: 0}
   tMaxPop: {fileID: 0}
+--- !u!114 &4946777952770698347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5223004922723071653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8925ac90c05c6c488fae25d7dfb2dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
 --- !u!1001 &1683413614753152335
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -811,7 +824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 921809980d7ed414e8009f72dd6d9e3f, type: 3}
       propertyPath: m_Name
-      value: ' townhall Enemy'
+      value: townhall Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 921809980d7ed414e8009f72dd6d9e3f, type: 3}
       propertyPath: m_Layer
