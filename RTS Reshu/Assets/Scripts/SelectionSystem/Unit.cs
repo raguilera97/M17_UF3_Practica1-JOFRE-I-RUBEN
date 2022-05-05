@@ -14,6 +14,10 @@ public class Unit : MonoBehaviour
         {
             Selections.Instance.unitList.Add(this.gameObject.GetComponent<Unit>());
         }
+        else
+        {
+            Selections.Instance.enemyUnitList.Add(this.gameObject.GetComponent<Unit>());
+        }
     }
 
     private void OnDestroy()
@@ -21,6 +25,10 @@ public class Unit : MonoBehaviour
         if (!this.gameObject.name.Contains("Enemy"))
         {
            Selections.Instance.unitList.Remove(this.gameObject.GetComponent<Unit>());
+        }
+        else
+        {
+            Selections.Instance.enemyUnitList.Remove(this.gameObject.GetComponent<Unit>());
         }
        
     }

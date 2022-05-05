@@ -43,6 +43,9 @@ public class ControladorInfo : MonoBehaviour
     public float civilss = 0;
     public List<Unit> civils = new List<Unit>();
 
+    // Punts d'atac
+    public Transform puntAttack;
+
     // Components de elements de recursos en el mapa
     public List<Resource> recursosMapa = new List<Resource>();
 
@@ -79,7 +82,7 @@ public class ControladorInfo : MonoBehaviour
         AssignGUIDUnits();
         AssignGUIDResource();
 
-        civils = unitats.unitList;
+        civils = unitats.enemyUnitList;
         
         ajuntament.GetComponent<PersistentGameObject>().id = Guid.NewGuid().ToString();
     }
