@@ -7,10 +7,11 @@ public class iaSoldier : MonoBehaviour
 {
     public float movementSpeed = 10.0f;
     public float pursueDistance = 10.0f;
-    public float attackDistance = 5.0f;
-    public float attackCooldown = 1;
+    public float attackDistance = 2.0f;
+    public float attackCooldown = 0;
 
     public int attackDmg;
+    public bool itsMoving = false;
 
     public int maxHealth = 100;
     public int currentHealth;
@@ -46,6 +47,12 @@ public class iaSoldier : MonoBehaviour
 
     void Update()
     {
+
+        if (agent.isStopped)
+        {
+            itsMoving = false;
+        }
+
         iStateWarrior nextState = currentState.OnUpdate(this);
 
         if (nextState != null)

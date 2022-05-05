@@ -15,6 +15,7 @@ public class PursueSoldierState : iStateWarrior
 
         if (distanceToTarget < war.attackDistance)
         {
+            war.agent.isStopped = true;
             return new AttackSoldierState();
         }
 

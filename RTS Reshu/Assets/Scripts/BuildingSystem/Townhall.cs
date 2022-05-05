@@ -24,7 +24,7 @@ public class Townhall : MonoBehaviour, ISaveable
 
     void Start()
     {
-        almacen = FindObjectOfType<Almacen>();
+        almacen = GetComponent<Almacen>();
          
     }
 

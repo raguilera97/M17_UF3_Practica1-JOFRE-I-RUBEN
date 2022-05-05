@@ -1949,14 +1949,11 @@ GameObject:
   - component: {fileID: 6224283250937474517}
   - component: {fileID: 6335868294443679189}
   - component: {fileID: 8711666501186727295}
-<<<<<<< HEAD
   - component: {fileID: 3372467509956774109}
-=======
   - component: {fileID: 8771808516190606979}
   - component: {fileID: 6032641671212863073}
->>>>>>> CombatSys
   m_Layer: 8
-  m_Name: ShieldWarrior
+  m_Name: ShieldWarrior Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2048,11 +2045,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
-<<<<<<< HEAD
---- !u!114 &3372467509956774109
-=======
 --- !u!114 &8771808516190606979
->>>>>>> CombatSys
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2061,12 +2054,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5363434506995638573}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD
-  m_Script: {fileID: 11500000, guid: a8925ac90c05c6c488fae25d7dfb2dca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 
-=======
   m_Script: {fileID: 11500000, guid: 0fd952daaab94b745be0a290974f4488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2093,7 +2080,6 @@ MonoBehaviour:
   agent: {fileID: 0}
   unitToAttack: {fileID: 0}
   soldier: {fileID: 0}
->>>>>>> CombatSys
 --- !u!1 &5363434506995638575
 GameObject:
   m_ObjectHideFlags: 0

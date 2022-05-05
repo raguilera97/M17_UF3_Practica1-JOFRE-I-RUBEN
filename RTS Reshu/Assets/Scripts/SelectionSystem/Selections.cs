@@ -24,7 +24,7 @@ public class Selections : MonoBehaviour
     public bool townhallIsSelected = false;
     public bool tavernllIsSelected = false;
 
-    public Unit units;
+
 
     private static Selections _instance;
     public static Selections Instance { get { return _instance; } }
@@ -90,6 +90,11 @@ public class Selections : MonoBehaviour
             if (unit.name.Contains("Villager"))
             {
                 unit.gameObject.GetComponent<iaVillager>().OrderIdle();
+            }
+            else
+            {
+                unit.gameObject.GetComponent<iaSoldier>().OrderIdle();
+                unit.gameObject.GetComponent<iaSoldier>().itsMoving = true;
             }
 
             contUnit++;
@@ -168,6 +173,11 @@ public class Selections : MonoBehaviour
             if (unit.name.Contains("Villager"))
             {
                 unit.gameObject.GetComponent<iaVillager>().OrderIdle();
+            }
+            else
+            {
+                unit.gameObject.GetComponent<iaSoldier>().OrderIdle();
+                unit.gameObject.GetComponent<iaSoldier>().itsMoving = true;
             }
 
             countUnit++;
@@ -427,16 +437,16 @@ public class Selections : MonoBehaviour
     {
         foreach (Unit unit in unitSelected)
         {
-            if (unit.name.Contains("Villager"))
+            if (!unit.name.Contains("Villager"))
             {
-                units = unitTarget;
-                units.Selected();
+                
+                unitTarget.Selected();
 
-                unit.GetComponent<iaSoldier>().OrderAttack(units);
+                unit.GetComponent<iaSoldier>().OrderAttack(unitTarget);
 
                 //StartCoroutine(waitDesactive());
 
-                Deselect(unit);
+                Deselect(unitTarget);
 
                 break;
             }

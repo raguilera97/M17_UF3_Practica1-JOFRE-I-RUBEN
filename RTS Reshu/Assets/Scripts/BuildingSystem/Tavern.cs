@@ -10,7 +10,8 @@ public class Tavern : MonoBehaviour
     [SerializeField] GameObject warrior;
     [SerializeField] GameObject shieldWarrior;
 
-    [SerializeField] Almacen almacen;
+    public Almacen almacen;
+    Townhall[] townhalls;
     Townhall townhall;
 
     // mensaje de error de buildingHUD (dentro del townhall)
@@ -20,8 +21,22 @@ public class Tavern : MonoBehaviour
 
     void Start()
     {
-        almacen = FindObjectOfType<Almacen>();
-        townhall = FindObjectOfType<Townhall>();
+        
+        townhalls = FindObjectsOfType<Townhall>();
+
+        for(int i = 0; townhalls.Length > i; i++)
+        {
+            if(townhalls[i].gameObject.name.Contains("Ally") && this.gameObject.name.Contains("Ally"))
+            {
+                townhall = townhalls[i];
+                break;
+            }
+            else if(townhalls[i].gameObject.name.Contains("Enemy") && this.gameObject.name.Contains("Enemy")){
+                townhall = townhalls[i];
+            }
+        }
+
+        almacen = townhall.gameObject.GetComponent<Almacen>();
 
     }
 

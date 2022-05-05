@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class AttackSoldierState : iStateWarrior
 {
-    private float timeSinceLastAttack = Mathf.Infinity;
+    private float timeSinceLastAttack = 0;
 
     public void OnEnterState(iaSoldier character)
     {
-        
+        character.attackCooldown = Random.Range(2f, 5f);
     }
 
     public iStateWarrior OnUpdate(iaSoldier war)
@@ -18,21 +18,15 @@ public class AttackSoldierState : iStateWarrior
         float distanceToPlayer = Vector3.Distance(war.transform.position, war.unitToAttack.transform.position);
 
 
-       /* if (distanceToPlayer > war.attackDistance)
+         if (distanceToPlayer > war.attackDistance)
+         {
+             return new PursueSoldierState();
+         }
+
+        if (timeSinceLastAttack > Mathf.Round(war.attackCooldown) && distanceToPlayer < war.attackDistance)
         {
-            return new PursueSoldierState();
-        }*/
-        if(distanceToPlayer < war.attackDistance)
-        {
+            war.attackCooldown = Random.Range(3f, 5f);
             war.soldier.AttackAnimation();
-        }
-
-
-        war.attackCooldown = Random.Range(1f, 3f);
-
-        if (timeSinceLastAttack > war.attackCooldown)
-        {
-            
             timeSinceLastAttack = 0.0f;
         }
 

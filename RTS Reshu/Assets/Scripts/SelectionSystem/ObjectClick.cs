@@ -61,6 +61,11 @@ public class ObjectClick : MonoBehaviour
                     }
                    
                 }
+
+                if(hitObject.name.Contains("Warrior") && hitObject.name.Contains("Enemy"))
+                {
+                    Selections.Instance.CombatClick(hitObject.GetComponent<Unit>());
+                }
                 
             }
 

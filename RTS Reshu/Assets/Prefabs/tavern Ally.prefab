@@ -489,7 +489,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7995298246295219607
 RectTransform:
   m_ObjectHideFlags: 0
@@ -663,7 +663,7 @@ GameObject:
   - component: {fileID: 8601862234393832537}
   - component: {fileID: 7509878870083722249}
   m_Layer: 8
-  m_Name: tavern Alily
+  m_Name: tavern Ally
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
