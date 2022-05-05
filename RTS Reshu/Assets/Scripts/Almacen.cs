@@ -13,8 +13,12 @@ public class Almacen : MonoBehaviour, ISaveable
     
     private void Update()
     {
-        foodT.text = food.ToString();
-        rockT.text = rock.ToString();
+        if (!this.gameObject.name.Contains("Enemy"))
+        {
+            foodT.text = food.ToString();
+            rockT.text = rock.ToString();
+        }
+        
 
     }
 

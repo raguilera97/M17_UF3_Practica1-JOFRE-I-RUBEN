@@ -8,7 +8,7 @@ public class Unit : MonoBehaviour
     private bool itsSelected = false;
     public bool civilOcupat = false;
 
-    private void Start()
+    private void Awake()
     {
         if (!this.gameObject.name.Contains("Enemy"))
         {
