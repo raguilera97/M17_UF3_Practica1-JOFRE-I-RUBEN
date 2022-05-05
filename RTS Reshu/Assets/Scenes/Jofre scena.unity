@@ -622,6 +622,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Villager
       objectReference: {fileID: 0}
+    - target: {fileID: 6533225079475022648, guid: fb0ed1f665837b24b851051a59c784d8, type: 3}
+      propertyPath: almacen
+      value: 
+      objectReference: {fileID: 1963816217}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb0ed1f665837b24b851051a59c784d8, type: 3}
 --- !u!1001 &371736356
@@ -1173,7 +1177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6753256966644100285, guid: 1c982fc2af9797b42b8d6dfc0ef859af, type: 3}
       propertyPath: m_Name
-      value: townhall
+      value: ' townwall Enemy'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c982fc2af9797b42b8d6dfc0ef859af, type: 3}
@@ -2134,7 +2138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8994905510961330123, guid: f9143dcb9f50a2f48b9e701f89b1d900, type: 3}
       propertyPath: m_Name
-      value: SwordWarrior
+      value: SwordWarrior Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9143dcb9f50a2f48b9e701f89b1d900, type: 3}
@@ -2591,7 +2595,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5363434506995638573, guid: 7ca293648a82bc44c8b8937acdd8ada6, type: 3}
       propertyPath: m_Name
-      value: ShieldWarrior
+      value: ShieldWarrior Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 5363434506995638573, guid: 7ca293648a82bc44c8b8937acdd8ada6, type: 3}
       propertyPath: m_TagString
