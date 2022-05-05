@@ -494,6 +494,8 @@ public class RuleSystem : MonoBehaviour
         Debug.Log("Spawned soldier");
         if (controladorIA.ajuntamentRecursos.food >= 50 && controladorIA.ajuntamentRecursos.rock >= 100)
         {
+            controladorIA.tavernEnemy.GetComponent<Tavern>().SpawnWarrior();
+
             controladorIA.ajuntamentRecursos.food -= 50;
             controladorIA.ajuntamentRecursos.rock -= 100;
             controladorIA.currentSoldiers += 1;
