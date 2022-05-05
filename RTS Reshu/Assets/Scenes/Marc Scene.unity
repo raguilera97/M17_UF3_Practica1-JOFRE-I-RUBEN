@@ -873,6 +873,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5363701705653274527, guid: f9143dcb9f50a2f48b9e701f89b1d900, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8994905510961330123, guid: f9143dcb9f50a2f48b9e701f89b1d900, type: 3}
       propertyPath: m_Name
       value: Sword Warrior Ally
