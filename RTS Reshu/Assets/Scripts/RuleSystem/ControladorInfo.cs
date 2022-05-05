@@ -49,9 +49,10 @@ public class ControladorInfo : MonoBehaviour
     // Components de elements de recursos en el mapa
     public List<Resource> recursosMapa = new List<Resource>();
 
-    // Component del ajuntament
+    // Component del ajuntament i Tavern
     public Townhall ajuntament;
     public Almacen ajuntamentRecursos;
+    public Tavern tavernEnemy;
 
     // Component del temps de joc
     public TimeGameSimulator timeGameSimulator;
