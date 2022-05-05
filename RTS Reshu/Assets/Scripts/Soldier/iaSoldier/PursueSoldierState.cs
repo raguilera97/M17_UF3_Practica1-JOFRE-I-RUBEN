@@ -15,11 +15,9 @@ public class PursueSoldierState : iStateWarrior
 
         if (distanceToTarget < war.attackDistance)
         {
-            war.agent.isStopped = true;
+            
             return new AttackSoldierState();
         }
-
-        war.agent.SetDestination(war.unitToAttack.transform.position);
 
         return null;
     }

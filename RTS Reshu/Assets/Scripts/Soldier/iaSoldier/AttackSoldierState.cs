@@ -8,6 +8,8 @@ public class AttackSoldierState : iStateWarrior
 
     public void OnEnterState(iaSoldier character)
     {
+        character.transform.LookAt(character.unitToAttack.transform);
+        character.agent.ResetPath();
         character.attackCooldown = Random.Range(2f, 5f);
     }
 

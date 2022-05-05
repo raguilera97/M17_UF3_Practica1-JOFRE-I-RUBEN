@@ -14,17 +14,21 @@ public class IdleSoldierState : iStateWarrior
    public iStateWarrior OnUpdate(iaSoldier war)
     {
         Collider[] enemyArray = Physics.OverlapSphere(war.transform.position, range);
-        foreach(Collider collider in enemyArray)
+
+        if (war.itsMoving == false)
         {
-            if(collider.TryGetComponent<Unit>(out Unit unit) && collider.gameObject != war.gameObject && !war.itsMoving)
+            foreach (Collider collider in enemyArray)
             {
-                if (unit.name.Contains("Warrior"))
+                if (collider.TryGetComponent<Unit>(out Unit unit) && collider.gameObject != war.gameObject)
                 {
-                    war.OrderAttack(unit);
-                    break;
+                    if (unit.name.Contains("Warrior"))
+                    {
+                        war.OrderAttack(unit);
+                        break;
+                    }
                 }
+
             }
-            
         }
         return null;
     }

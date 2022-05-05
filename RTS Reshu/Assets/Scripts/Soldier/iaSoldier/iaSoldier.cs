@@ -48,11 +48,7 @@ public class iaSoldier : MonoBehaviour
     void Update()
     {
 
-        if (agent.isStopped)
-        {
-            itsMoving = false;
-        }
-
+       
         iStateWarrior nextState = currentState.OnUpdate(this);
 
         if (nextState != null)

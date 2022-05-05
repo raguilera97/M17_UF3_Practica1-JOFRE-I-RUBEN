@@ -11,8 +11,6 @@ public class Weapon : MonoBehaviour
         if (other.gameObject.name.Contains("Warrior"))
         {
 
-            Debug.Log("hit");
-
             soldierIa = other.gameObject.GetComponent<iaSoldier>();
             soldierIa.TakeDmg(soldierIa.attackDmg);
         }
