@@ -11,6 +11,7 @@ public class Selections : MonoBehaviour
     public Vector3 formationPos = new Vector3(0, 0);
 
     public List<Unit> unitList = new List<Unit>();
+    public List<Unit> enemyUnitList = new List<Unit>();
     public List<Unit> unitSelected = new List<Unit>();
     public Townhall townhall;
     public Tavern tavern;
@@ -447,8 +448,6 @@ public class Selections : MonoBehaviour
                 //StartCoroutine(waitDesactive());
 
                 Deselect(unitTarget);
-
-                break;
             }
 
         }

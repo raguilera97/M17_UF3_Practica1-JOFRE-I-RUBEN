@@ -1711,7 +1711,7 @@ BoxCollider:
   m_GameObject: {fileID: 5363434506257216501}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.29117984, y: 0.9106017, z: 0.14509305}
   m_Center: {x: -0.00022516561, y: 0.63645256, z: 0.00000046777575}
@@ -1949,7 +1949,6 @@ GameObject:
   - component: {fileID: 6224283250937474517}
   - component: {fileID: 6335868294443679189}
   - component: {fileID: 8711666501186727295}
-  - component: {fileID: 3372467509956774109}
   - component: {fileID: 8771808516190606979}
   - component: {fileID: 6032641671212863073}
   m_Layer: 8
@@ -2074,12 +2073,14 @@ MonoBehaviour:
   pursueDistance: 10
   attackDistance: 2
   attackCooldown: 1
-  attackDmg: 0
-  maxHealth: 100
-  currentHealth: 0
+  attackDmg: 15
+  itsMoving: 0
+  maxHealth: 300
+  currentHealth: 300
   agent: {fileID: 0}
   unitToAttack: {fileID: 0}
   soldier: {fileID: 0}
+  sword: {fileID: 5363434506257216501}
 --- !u!1 &5363434506995638575
 GameObject:
   m_ObjectHideFlags: 0
@@ -2130,7 +2131,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e5891243c98ce9547a0edb06e153cff1, type: 2}
+  - {fileID: 2100000, guid: 19f6a827f9e255f4bbb56ccea9edafa0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

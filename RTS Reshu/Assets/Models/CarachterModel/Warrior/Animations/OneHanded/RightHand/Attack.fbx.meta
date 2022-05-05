@@ -389,7 +389,7 @@ ModelImporter:
     second: root
   - first:
       74: 7400000
-    second: RightHand@Attack01
+    second: Attackio
   - first:
       95: 9500000
     second: //RootNode
@@ -422,7 +422,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: RightHand@Attack01
+      name: Attackio
       takeName: RightHand@Attack01
       internalID: 0
       firstFrame: 0
@@ -445,7 +445,21 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.29228047
+        functionName: ActivarColl
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 22ea1fca4c065534ead13fe8bb49c3d6, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.49852678
+        functionName: DesactivarColl
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 22ea1fca4c065534ead13fe8bb49c3d6, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

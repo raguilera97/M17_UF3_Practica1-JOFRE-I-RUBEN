@@ -74,6 +74,6 @@ public class SoldierControler : MonoBehaviour
 
     public void DeathAnimation()
     {
-        anim.SetTrigger("Dead");
+        anim.SetBool("Dead", true);
     }
 }

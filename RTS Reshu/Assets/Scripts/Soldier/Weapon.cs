@@ -8,7 +8,7 @@ public class Weapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name.Contains("Warrior"))
+        if (other.gameObject.name.Contains("Enemy"))
         {
 
             soldierIa = other.gameObject.GetComponent<iaSoldier>();
