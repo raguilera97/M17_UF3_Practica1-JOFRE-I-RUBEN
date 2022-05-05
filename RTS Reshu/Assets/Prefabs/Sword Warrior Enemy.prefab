@@ -271,7 +271,7 @@ BoxCollider:
   m_GameObject: {fileID: 5572536580458366043}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.29118025, y: 0.8455934, z: 0.14509313}
   m_Center: {x: -0.00022476978, y: 0.6689505, z: -0.000003610521}
@@ -2239,13 +2239,14 @@ MonoBehaviour:
   pursueDistance: 5
   attackDistance: 2
   attackCooldown: 2
-  attackDmg: 5
+  attackDmg: 40
   itsMoving: 0
   maxHealth: 100
   currentHealth: 100
   agent: {fileID: 5363701705653274527}
   unitToAttack: {fileID: 0}
   soldier: {fileID: 4800468569272035744}
+  sword: {fileID: 5572536580458366043}
 --- !u!136 &7376197725531465688
 CapsuleCollider:
   m_ObjectHideFlags: 0

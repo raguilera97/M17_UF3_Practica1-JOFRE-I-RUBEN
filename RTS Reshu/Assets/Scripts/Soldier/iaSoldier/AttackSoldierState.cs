@@ -15,22 +15,30 @@ public class AttackSoldierState : iStateWarrior
 
     public iStateWarrior OnUpdate(iaSoldier war)
     {
-        timeSinceLastAttack += Time.deltaTime;
-
-        float distanceToPlayer = Vector3.Distance(war.transform.position, war.unitToAttack.transform.position);
-
-
-         if (distanceToPlayer > war.attackDistance)
-         {
-             return new PursueSoldierState();
-         }
-
-        if (timeSinceLastAttack > Mathf.Round(war.attackCooldown) && distanceToPlayer < war.attackDistance)
+        if(war.unitToAttack != null)
         {
-            war.attackCooldown = Random.Range(3f, 5f);
-            war.soldier.AttackAnimation();
-            timeSinceLastAttack = 0.0f;
+            timeSinceLastAttack += Time.deltaTime;
+
+            float distanceToPlayer = Vector3.Distance(war.transform.position, war.unitToAttack.transform.position);
+
+
+            if (distanceToPlayer > war.attackDistance)
+            {
+                return new PursueSoldierState();
+            }
+
+            if (timeSinceLastAttack > Mathf.Round(war.attackCooldown) && distanceToPlayer < war.attackDistance)
+            {
+                war.attackCooldown = Random.Range(3f, 5f);
+                war.soldier.AttackAnimation();
+                timeSinceLastAttack = 0.0f;
+            }
         }
+        else
+        {
+            return new IdleSoldierState();
+        }
+        
 
         return null;
     }

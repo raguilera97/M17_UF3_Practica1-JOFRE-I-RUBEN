@@ -447,8 +447,6 @@ public class Selections : MonoBehaviour
                 //StartCoroutine(waitDesactive());
 
                 Deselect(unitTarget);
-
-                break;
             }
 
         }

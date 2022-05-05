@@ -21,6 +21,8 @@ public class iaSoldier : MonoBehaviour
     public Unit unitToAttack;
     public SoldierControler soldier;
 
+    public GameObject sword;
+
     iStateWarrior currentState = new IdleSoldierState();
 
     private void Awake()
@@ -81,16 +83,38 @@ public class iaSoldier : MonoBehaviour
 
     public void TakeDmg(int dmg)
     {
-        if (currentHealth > 0)
+        if (currentHealth > 0 && currentHealth - dmg > 0)
         {
             currentHealth -= dmg;
             soldier.HurtAnimation();
         }
         else
         {
-            soldier.DeathAnimation();
-            Destroy(this.gameObject);
+            Dead();
         }
     }
+
+    public void ActivarColl()
+    {
+        Debug.Log("mi puta estampa");
+        sword.GetComponent<BoxCollider>().enabled = true;
+    }
+
+    public void DesactivarColl()
+    {
+        sword.GetComponent<BoxCollider>().enabled = false;
+    }
+
+    public void Dead()
+    {
+        
+        soldier.DeathAnimation();
+        
+    }
     
+    public void DestroyPost()
+    {
+        Destroy(this.gameObject);
+
+    }
 }
