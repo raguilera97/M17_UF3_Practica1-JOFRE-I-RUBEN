@@ -30,8 +30,12 @@ public class Townhall : MonoBehaviour, ISaveable
 
     private void Update()
     {
-        tCurrentPop.text = currentPopulation.ToString();
-        tMaxPop.text = maxPopulation.ToString();
+        if (!this.gameObject.name.Contains("Enemy"))
+        {
+            tCurrentPop.text = currentPopulation.ToString();
+            tMaxPop.text = maxPopulation.ToString();
+        }
+        
     }
 
     public void Selected()
